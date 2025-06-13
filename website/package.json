@@ -1,0 +1,30 @@
+{
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "animate.css": "^4.1.1",
+    "axios": "^1.9.0",
+    "framer-motion": "^12.17.3",
+    "next": "15.3.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-fast-marquee": "^1.6.5",
+    "react-paginate": "^8.3.0",
+    "react-slick": "^0.30.3",
+    "sass": "^1.89.2",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.8"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4"
+  }
+}
