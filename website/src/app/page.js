@@ -1,7 +1,17 @@
+import { DivideIcon } from "@phosphor-icons/react";
+import { headers } from "next/headers";
 import Image from "next/image";
+import TopNav from '../components/Header/TopNav/TopNav';
+import Menu from "@/components/Header/Menu/Menu";
 
 export default function Home() {
   return (
-   <h1 className="text-4xl font-bold bg-blue-500 w-100 h-100 border border-red-400 border-solid rounded-2xl">This is homepage</h1>
+    <div className="overflow-hidden">
+        <header id="header">
+          <TopNav />
+          <Menu />
+        </header>
+      
+    </div>
   );
 }

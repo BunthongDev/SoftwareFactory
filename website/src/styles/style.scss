@@ -22,7 +22,11 @@
 @import 'section/questionFAQ.scss';
 @import "animate.css";
 
+// import tailwind css v4
+@import 'tailwind.css';
+@import "tailwinds/preflight.css";
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
