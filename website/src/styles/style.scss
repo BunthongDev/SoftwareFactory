@@ -32,9 +32,10 @@
   --foreground: #171717;
 }
 
+// I think it is wrong set up color on this path, I not yet remove it. I keep it here til the project done
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    // --background: #0a0a0a;
     // --foreground: #ededed;
   }
 }
