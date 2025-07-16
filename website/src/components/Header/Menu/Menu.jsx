@@ -119,7 +119,7 @@ const Menu = () => {
               className="menu-humburger hidden pointer"
               onClick={() => setOpenMenuMobile(!openMenuMobile)}
             >
-              <Icon.List className="text-2xl" weight="bold" />
+              <Icon.ListIcon className="text-2xl" weight="bold" />
             </div>
           </div>
         </div>
@@ -133,7 +133,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/"
                   >
-                    <span className="body2 font-bold">Home</span>
+                    <span className="font-bold">Home</span>
                   </a>
                 </li>
 
@@ -142,7 +142,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/about"
                   >
-                    <span className="body2 font-bold">About Us</span>
+                    <span className="font-bold">About Us</span>
                   </a>
                 </li>
 
@@ -151,7 +151,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/service"
                   >
-                    <span className="body2 font-bold">Service</span>
+                    <span className="font-bold">Service</span>
                   </a>
                 </li>
 
@@ -160,7 +160,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/case-studies"
                   >
-                    <span className="body2 font-bold">Case Studies </span>
+                    <span className="font-bold">Case Studies </span>
                   </a>
                 </li>
 
@@ -169,7 +169,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/blog"
                   >
-                    <span className="body2 font-bold">Blog</span>
+                    <span className="font-bold">Blog</span>
                   </a>
                 </li>
 
@@ -178,7 +178,7 @@ const Menu = () => {
                     className="nav-link-mobile flex items-center justify-between"
                     href="/contact"
                   >
-                    <span className="body2 font-bold">Contact Us</span>
+                    <span className="font-bold">Contact Us</span>
                   </a>
                 </li>
               </ul>
