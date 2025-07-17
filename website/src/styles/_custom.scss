@@ -1,0 +1,23 @@
+@use 'global.scss' as *;
+@use 'header.scss' as *;
+@use 'footer.scss' as *;
+@use 'slider.scss' as *;
+@use 'pagination.scss' as *;
+@use 'modal.scss' as *;
+@use 'text-has-line-before.scss' as *;
+
+// Section partials
+@use 'section/about.scss' as *;
+@use 'section/payment-gateway.scss' as *;
+@use 'section/blog-list.scss' as *;
+@use 'section/list-partner.scss' as *;
+@use 'section/service.scss' as *;
+@use 'section/card.scss' as *;
+@use 'section/project.scss' as *;
+@use 'section/counter.scss' as *;
+@use 'section/testimonial.scss' as *;
+@use 'section/form-request.scss' as *;
+@use 'section/our-team.scss' as *;
+@use 'section/case-studies.scss' as *;
+@use 'section/list-pricing.scss' as *;
+@use 'section/questionFAQ.scss' as *;
