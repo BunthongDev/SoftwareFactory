@@ -6,6 +6,7 @@ import Menu from "@/components/Header/Menu/Menu";
 import Slider from "@/components/Slider/slider";
 import Service from "@/components/Service/Service";
 import serviceData from '@/data/service.json'
+import CaseStudy from "@/components/CaseStudy/CaseStudy";
 
 
 export default function Home() {
@@ -19,6 +20,8 @@ export default function Home() {
       <main className="content">
         <Slider />
         <Service data={serviceData} />
+        <CaseStudy/>
+        
       </main>
     </div>
   );
