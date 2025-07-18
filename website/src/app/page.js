@@ -7,6 +7,7 @@ import Slider from "@/components/Slider/slider";
 import Service from "@/components/Service/Service";
 import serviceData from '@/data/service.json'
 import CaseStudy from "@/components/CaseStudy/CaseStudy";
+import Testimonial from "@/components/Testimonial/Testimonial";
 
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
         <Slider />
         <Service data={serviceData} />
         <CaseStudy/>
+        <Testimonial/>
         
       </main>
     </div>
