@@ -8,6 +8,8 @@ import Service from "@/components/Service/Service";
 import serviceData from '@/data/service.json'
 import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import Testimonial from "@/components/Testimonial/Testimonial";
+import Blog from "@/components/Blog/Blog";
+import BlogData from '@/data/blog.json';
 
 
 export default function Home() {
@@ -21,9 +23,9 @@ export default function Home() {
       <main className="content">
         <Slider />
         <Service data={serviceData} />
-        <CaseStudy/>
-        <Testimonial/>
-        
+        <CaseStudy />
+        <Testimonial />
+        <Blog data={BlogData} />
       </main>
     </div>
   );

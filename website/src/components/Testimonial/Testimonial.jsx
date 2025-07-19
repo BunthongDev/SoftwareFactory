@@ -57,7 +57,7 @@ const testimonialData = [
       "From concept to launch, the game development process was seamless. An incredibly talented and professional team.",
     name: "Chris Evans",
     role: "Lead Producer, Titan Games",
-    avatar: "/images/avatar3.webp",
+    avatar: "/images/casethree.webp",
   },
 ];
 
