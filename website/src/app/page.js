@@ -10,6 +10,7 @@ import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import Testimonial from "@/components/Testimonial/Testimonial";
 import Blog from "@/components/Blog/Blog";
 import BlogData from '@/data/blog.json';
+import Footer from "@/components/Footer/Footer";
 
 
 export default function Home() {
@@ -26,6 +27,7 @@ export default function Home() {
         <CaseStudy />
         <Testimonial />
         <Blog data={BlogData} />
+        <Footer/>
       </main>
     </div>
   );
