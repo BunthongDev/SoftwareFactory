@@ -1,74 +1,77 @@
 import React from "react";
-import * as Icon from '@phosphor-icons/react/dist/ssr';
+import * as Icon from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+
+// Refactor: Social links are now generated from this array.
+// This makes it much easier to add, remove, or update links.
+const socialLinks = [
+  {
+    href: "https://www.facebook.com/your-page",
+    label: "Facebook",
+    icon: <Icon.FacebookLogoIcon size={23} weight="bold" />,
+  },
+  {
+    href: "https://www.linkedin.com/your-profile",
+    label: "LinkedIn",
+    icon: <Icon.LinkedinLogoIcon size={23} weight="bold" />,
+  },
+  {
+    href: "https://www.x.com/your-handle",
+    label: "X (formerly Twitter)",
+    icon: <Icon.XLogoIcon size={23} weight="bold" />,
+  },
+  {
+    href: "https://www.instagram.com/your-account",
+    label: "Instagram",
+    icon: <Icon.InstagramLogoIcon size={23} weight="bold" />,
+  },
+  {
+    href: "https://www.youtube.com/your-channel",
+    label: "YouTube",
+    icon: <Icon.YoutubeLogoIcon size={23} weight="bold" />,
+  },
+];
 
 const TopNav = () => {
   return (
-    <>
-      <div className="bg-slate-600">
-        <div className="container flex items-center justify-between h-[44px]">
-          <div className="left-block flex items-center">
-            <div className="location flex items-center ml-10">
-              <Icon.MapPinIcon className="text-white text-xl max-lg:hidden" />
-              <span className="ml-2 caption1 text-white max-lg:hidden text-[12px]">
-                Street 2011, #290 Borey MekongLand Golden Avenue, Phnom Penh |
-                Cambodia{" "}
-              </span>
-              <div className="mail lg:ml-7 flex items-center">
-                <Icon.EnvelopeIcon className="text-white text-xl" />
-                <span className="ml-2 caption1 text-white">
-                  support@softwarefactory.com{" "}
-                </span>
-              </div>
-            </div>
+    <div className="bg-slate-700">
+      <div className="container flex h-[44px] items-center justify-end sm:justify-between">
+        {/* This block is HIDDEN on mobile and VISIBLE on sm screens and up */}
+        <div className="left-block hidden items-center gap-x-6 text-sm sm:flex">
+          <div className="location hidden items-center gap-x-2 text-white/80 lg:flex">
+            <Icon.MapPinIcon size={23} />
+            <span>Street 2011, #290 Borey MekongLand, Phnom Penh</span>
           </div>
+          <Link
+            href="mailto:support@softwarefactory.com"
+            className="mail flex items-center gap-x-2 text-white/80 transition-colors hover:text-white"
+          >
+            <Icon.EnvelopeSimpleIcon size={23} />
+            <span className="hidden sm:inline">
+              support@softwarefactory.com
+            </span>
+          </Link>
+        </div>
 
-          <div className="right-block flex items-center">
-            <div className="line h-6 w-px bg-gray max-sm:hidden"></div>
-            <div className="list-social flex items-center gap-4 max-sm:hidden ">
+        {/* Social icons rendered from the array */}
+        <div className="right-block flex items-center gap-x-4">
+          <div className="line hidden h-5 w-px bg-white/20 sm:block"></div>
+          <div className="list-social flex items-center gap-x-2">
+            {socialLinks.map((link) => (
               <Link
-                className="item rounded-full w-7 h-7 border-2 flex items-center justify-center hover:bg-gray-300"
-                href="https://www.facebook.com/poipetinsider"
+                key={link.label}
+                href={link.href}
                 target="_blank"
+                aria-label={link.label}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/10 hover:text-white"
               >
-                <Icon.FacebookLogoIcon className="text-blue-300 text-xl" />
+                {link.icon}
               </Link>
-
-              <Link
-                className="item rounded-full w-7 h-7 border-2 flex items-center justify-center hover:bg-gray-300"
-                href="https://www.facebook.com/poipetinsider"
-                target="_blank"
-              >
-                <Icon.LinkedinLogoIcon className="text-blue-300 text-xl" />
-              </Link>
-
-              <Link
-                className="item rounded-full w-7 h-7 border-gray border-2 flex items-center justify-center hover:bg-gray-300"
-                href="https://www.facebook.com/poipetinsider"
-                target="_blank"
-              >
-                <Icon.TwitterLogoIcon className="text-blue-300 text-xl" />
-              </Link>
-              <Link
-                className="item rounded-full w-7 h-7 border-gray border-2 flex items-center justify-center hover:bg-gray-300"
-                href="https://www.facebook.com/poipetinsider"
-                target="_blank"
-              >
-                <Icon.InstagramLogoIcon className="text-blue-300 text-xl" />
-              </Link>
-
-              <Link
-                className="item rounded-full w-7 h-7 border-gray border-2 flex items-center justify-center hover:bg-gray-300"
-                href="https://www.youtube.com/@PoipetInsider"
-                target="_blank"
-              >
-                <Icon.YoutubeLogoIcon className="text-blue-300 text-xl" />
-              </Link>
-            </div>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
