@@ -28,9 +28,13 @@ export default function Home() {
         <CaseStudy />
         <Testimonial />
         <Blog data={BlogData} />
-        <Partner className="lg:mt-[100px] sm:mt-16 mt-10 "/>
-        <Footer/>
       </main>
+      
+        <Partner className="lg:mt-[100px] sm:mt-16 mt-10 "/>
+        <Footer id="footer" >
+          <Footer/>
+        </Footer>
+        
     </div>
   );
 }
