@@ -89,8 +89,8 @@ const Footer = () => {
               priority
             />
           </Link>
-          <p className="text-lg text-white text-[30px] font-bold">
-            Value your time by using great software.😊
+          <p className="text-lg text-white text-[40px] font-bold md:text-4xl lg:text-[40px] leading-[50px]">
+            <Icon.QuotesIcon size={60} weight="fill" className="mb-3 h-12 w-12 text-blue-500 md:h-16 md:w-16" /> Value your time by using great software.
           </p>
           <div className="my-2 flex items-center gap-3">
             {socialLinks.map((link) => (
