@@ -10,7 +10,7 @@ const Blog = ({ data }) => {
         {/* All blog data display here */}
         <div className="list grid lg:grid-cols-3 sm:grid-cols-2 gap-8 md:mt-10 mt-6">
           {data.slice(0, 3).map((item, index) => (
-            <BlogItem data={item} key={index} />
+            <BlogItem data={item} key={item.id || index} />
           ))}
         </div>
       </div>

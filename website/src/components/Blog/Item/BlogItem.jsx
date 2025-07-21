@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
-const BlogItem = ({ data, key }) => {
+const BlogItem = ({ data }) => {
   return (
     <div className="blog-item">
       <Link

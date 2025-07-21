@@ -11,6 +11,7 @@ import Testimonial from "@/components/Testimonial/Testimonial";
 import Blog from "@/components/Blog/Blog";
 import BlogData from '@/data/blog.json';
 import Footer from "@/components/Footer/Footer";
+import Partner from "@/components/Partner/Partner";
 
 
 export default function Home() {
@@ -27,6 +28,7 @@ export default function Home() {
         <CaseStudy />
         <Testimonial />
         <Blog data={BlogData} />
+        <Partner className="lg:mt-[100px] sm:mt-16 mt-10 "/>
         <Footer/>
       </main>
     </div>
