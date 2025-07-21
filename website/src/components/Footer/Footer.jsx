@@ -81,16 +81,16 @@ const Footer = () => {
         <div className="flex flex-col items-center gap-6 text-center">
           <Link href="/" className="">
             <Image
-              width={350}
-              height={72}
-              className="w-350 transition-opacity hover:opacity-100"
+              width={450}
+              height={150}
+              className="transition-opacity hover:opacity-100 mt-5"
               src="/images/Software-Factory-Logo.png"
               alt="Software Factory Logo"
               priority
             />
           </Link>
-          <p className="text-lg text-slate-300">
-            Value your time by using great software.
+          <p className="text-lg text-white text-[30px] font-bold">
+            Value your time by using great software.😊
           </p>
           <div className="my-2 flex items-center gap-3">
             {socialLinks.map((link) => (
