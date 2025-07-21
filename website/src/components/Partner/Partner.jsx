@@ -4,16 +4,18 @@ import React from "react";
 
 const Partner = () => {
   return (
-    <div className="cta-block relative lg:h-[120px] h-[180px]">
-      <div className="container flex items-center justify-between max-lg:flex-col max-lg:justify-center gap-6 h-full bg-blue-600">
+    // Start call to action banner
+    <div className="cta-block w-full bg-blue-600 py-10 lg:py-0">
+      <div className="container flex h-full min-h-[120px] items-center justify-between max-lg:flex-col max-lg:justify-center max-lg:py-8 lg:gap-6">
         <div className="heading5 max-lg:text-center text-white">
           Let's Build the Technology That Drives Your Business.
         </div>
         <Link
-          className="button-main rounded-full hover:bg-black hover:text-white bg-white text-button px-9 py-3"
-          href="/"
+          
+          href="/contact-us"
+          className="button-main flex-shrink-0 rounded-full bg-white px-9 py-3 text-button hover:bg-black hover:text-white max-lg:mt-6"
         >
-          Get my free quote
+          Get My Free Quote
         </Link>
       </div>
     </div>
