@@ -4,9 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use App\Models\User;
+use App\Mail\VerificationCodeMail;
+
 
 class AdminController extends Controller
 {
+    // This function handles the admin logout functionality
     public function AdminLogout(Request $request){
         
         Auth::guard('web')->logout();
@@ -17,4 +22,56 @@ class AdminController extends Controller
 
         return redirect('/login');
     }
+    
+    // This function handles the admin login functionality
+    public function AdminLogin(Request $request){
+        $credentials = $request->only('email', 'password');
+
+        if(Auth::attempt($credentials)){
+            $user = Auth::user();
+            
+            $verificationCode = random_int(100000, 999999);
+            
+            session(['verification_code' => $verificationCode, 'user_id' => $user->id]);
+            
+            Mail::to($user->email)->send(new VerificationCodeMail($verificationCode));
+            
+            Auth::logout();
+            
+            return redirect()->route('custom.verification.form')->with('status', 'Verification code sent to your email.');
+            
+        }
+
+        return redirect()->back()->withErrors(['email' => 'Invalid login credentials.']);
+    }
+    
+    
+    // This function shows the verification form
+    public function ShowVerification(){
+        
+        return view('auth.verify');
+        
+    }
+    
+    // This function verifies the code entered by the user
+    // It checks if the code matches the one sent to the user's email, if it matches, it logs the user in
+    public function VerificationVerify(Request $request){
+        
+        $request->validate(['code' => 'required|numeric']);
+        if($request->code == session('verification_code')){
+            Auth::loginUsingId(session('user_id'));
+            
+            session()->forget(['verification_code', 'user_id']);
+
+            return redirect()->intended('dashboard');
+
+        }
+        // If the code does not match, it redirects back with an error message
+        return back()->withErrors(['code' => "Invalid verification code."]);
+        
+    }
+    
+    
+    
+    
 }
