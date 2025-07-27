@@ -41,7 +41,7 @@ class AdminController extends Controller
             return redirect()->route('custom.verification.form')->with('status', 'Verification code sent to your email.');
             
         }
-
+        
         return redirect()->back()->withErrors(['email' => 'Invalid login credentials.']);
     }
     

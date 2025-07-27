@@ -40,7 +40,12 @@
                                 <div class="pt-0">
 
                                     {{-- start Login form --}}
-                                    <form method="POST" action="{{ route('admin.login') }}" class="my-4">
+                                    {{-- with send code verificaion to email --}}
+                                    {{-- <form method="POST" action="{{ route('admin.login') }}" class="my-4"> --}} 
+                                        
+                                        {{-- without having code verification --}}
+                                    <form method="POST" action="{{ route('login') }}" class="my-4"> 
+                                        
                                         @csrf
 
                                         <div class="form-group mb-3">
