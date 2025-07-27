@@ -25,7 +25,7 @@ class ProfileController extends Controller
     
     
     /**
-     * Update the user's profile information.
+     * Update the admin's profile information.
      */
     public function ProfileStore(Request $request){
        $id = Auth::user()->id;
@@ -34,13 +34,18 @@ class ProfileController extends Controller
        $data->name = $request->name;
        $data->email = $request->email;
        
-       
+       $oldPhotoPath = $data->image;// Store the old photo path to delete it later if a new photo is uploaded
        
        if ($request->hasFile('image')) {
            $file = $request->file('image');
            $filename = time() . '.' . $file->getClientOriginalExtension();
            $file->move(public_path('upload/user_images/'), $filename);
            $data->image = $filename;
+           
+        //    If an old photo exists, delete it
+           if ($oldPhotoPath && file_exists(public_path('upload/user_images/' . $oldPhotoPath))) {
+               unlink(public_path('upload/user_images/' . $oldPhotoPath));
+           }
        }
        $data->save();
        return redirect()->back()->with('success', 'Profile Updated Successfully');
