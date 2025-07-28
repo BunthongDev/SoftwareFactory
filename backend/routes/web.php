@@ -26,6 +26,7 @@ Route::post('verify', [AdminController::class, 'VerificationVerify'])->name('cus
 Route::middleware('auth')->group(function () {
     Route::get('/admin/profile', [ProfileController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/profile/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
+    Route::post('/user/password/update', [ProfileController::class, 'PasswordUpdate'])->name('user.password.update');
 
     // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
