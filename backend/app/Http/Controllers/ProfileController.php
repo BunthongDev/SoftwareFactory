@@ -48,7 +48,14 @@ class ProfileController extends Controller
            }
        }
        $data->save();
-       return redirect()->back()->with('success', 'Profile Updated Successfully');
+       
+    //    alert notification toastr
+         $notification = array(
+              'message' => 'Profile Updated Successfully',
+              'alert-type' => 'success'
+         );
+       
+       return redirect()->back()->with($notification);
 
     }
     
