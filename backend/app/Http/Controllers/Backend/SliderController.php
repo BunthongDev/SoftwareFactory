@@ -29,7 +29,7 @@ class SliderController extends Controller
     public function StoreSlider(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048576', // Validate image file (1048576KB = 1GB)
             'heading' => 'required',
             'description' => 'required',
             'link' => 'required',
@@ -43,6 +43,7 @@ class SliderController extends Controller
             $img->resize(1124, 750)->save(public_path('upload/slider/' . $name_gen));
             $save_url = 'upload/slider/' . $name_gen;
 
+            // Create a new slider record from the request data (from Model)
             Slider::create([
                 'heading' => $request->heading,
                 'description' => $request->description,
@@ -100,7 +101,7 @@ class SliderController extends Controller
     public function DeleteSlider($id){
         $item = Slider::find($id);
         $img = $item->image;
-        unlink($img);
+        unlink($img); // delete the image file from the server
         
         Slider::find($id)->delete();
         

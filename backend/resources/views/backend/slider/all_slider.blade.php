@@ -24,13 +24,13 @@
 
                         <div class="card-header">
                             <h5 class="card-title mb-0">*</h5>
-                        </div><!-- end card header -->
+                        </div>
 
                         <div class="card-body">
                             <table id="datatable" class="table table-bordered dt-responsive table-responsive nowrap">
                                 <thead>
                                     <tr>
-                                        <th>Sl</th>
+                                        <th>#</th>
                                         <th>Image</th>
                                         <th>Heading</th>
                                         <th>Description</th>
@@ -41,6 +41,7 @@
                                 </thead>
                                 <tbody>
 
+                                    {{-- Loop through each slider item --}}
                                     @foreach ($slider as $key => $item )
 
                                         <tr>
