@@ -3,6 +3,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\SliderController;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -33,3 +35,16 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
+Route::middleware('auth')->group(function () {
+    Route::controller(SliderController::class)->group(function (){
+        Route::get('/all/slider', 'AllSlider')->name('all.slider'); // This route displays all sliders
+        Route::get('/add/slider', 'AddSlider')->name('add.slider'); // this route shows the add slider form
+        Route::post('/store/slider', 'StoreSlider')->name('store.slider'); // this route stores the new slider
+        Route::get('/edit/slider/{id}', 'EditSlider')->name('edit.slider'); // this route shows the edit slider form
+        Route::post('/update/slider/{id}', 'UpdateSlider')->name('update.slider'); // this route updates the slider
+        Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider'); // this route deletes the slider
+    });
+   
+});
