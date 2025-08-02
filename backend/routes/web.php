@@ -24,7 +24,7 @@ Route::post('verify', [AdminController::class, 'VerificationVerify'])->name('cus
 
 
 
-
+// Profile Routes
 Route::middleware('auth')->group(function () {
     Route::get('/admin/profile', [ProfileController::class, 'AdminProfile'])->name('admin.profile');
     Route::post('/profile/store', [ProfileController::class, 'ProfileStore'])->name('profile.store');
@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 
+// Slider Routes
 Route::middleware('auth')->group(function () {
     Route::controller(SliderController::class)->group(function (){
         Route::get('/all/slider', 'AllSlider')->name('all.slider'); // This route displays all sliders
