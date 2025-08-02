@@ -19,7 +19,15 @@
         <!-- Icons -->
         <link href="{{ asset('backend/assets/css/icons.min.css') }}" rel="stylesheet" type="text/css" />
         {{-- Toastr CSS --}}
-         <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" >
+        
+          <!-- Datatables css -->
+        <link href="{{ asset('backend/assets/libs/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend/assets/libs/datatables.net-buttons-bs5/css/buttons.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend/assets/libs/datatables.net-keytable-bs5/css/keyTable.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend/assets/libs/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('backend/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css') }}" rel="stylesheet" type="text/css" />
+
 
     </head>
 
@@ -81,6 +89,13 @@
         <!-- Toastr JS -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
+        {{-- SweetAlert2 --}}
+       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+       <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+        
+
+
+        
         {{-- Toastr Notifications --}}
         <script>
         @if(Session::has('message'))
@@ -104,6 +119,17 @@
         }
         @endif 
         </script>
+        
+        
+         <!-- Datatables js -->
+        <script src="{{ asset('backend/assets/libs/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+
+        <!-- dataTables.bootstrap5 -->
+        <script src="{{ asset('backend/assets/libs/datatables.net-bs5/js/dataTables.bootstrap5.min.js') }}"></script>
+        <script src="{{ asset('backend/assets/libs/datatables.net-buttons/js/dataTables.buttons.min.js') }}"></script>
+
+        <!-- Datatable Demo App Js -->
+        <script src="{{ asset('backend/assets/js/pages/datatable.init.js') }}"></script>
 
     </body>
 </html>
