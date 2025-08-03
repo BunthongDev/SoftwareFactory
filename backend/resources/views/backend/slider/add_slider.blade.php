@@ -29,17 +29,17 @@
             @csrf
             <div class="col-md-6">
                 <label for="validationDefault01" class="form-label">Slider Heading</label>
-                <input type="text" name="heading" class="form-control">
+                <input type="text" name="heading" class="form-control" placeholder="Enter slider heading (Optional)">
             </div>
             
              <div class="col-md-6">
                 <label for="validationDefault01" class="form-label">Slider Link</label>
-                <input type="text" name="link" class="form-control">
+                <input type="text" name="link" class="form-control" placeholder="Enter Slider Link" required>
             </div>
             
             <div class="col-md-12">
                 <label for="validationDefault01" class="form-label">Slider Description</label>
-                <textarea name="description" class="form-control" placeholder="Enter Slider Description"></textarea>
+                <textarea name="description" class="form-control" placeholder="Enter Slider Description (Optional)"></textarea>
             </div>
             
             <div class="col-md-6">

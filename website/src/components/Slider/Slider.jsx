@@ -74,15 +74,14 @@ const Slider = () => {
                     <div className="text-content flex-column-between">
                       <div className="relative z-10 text-center px-4 py-16 md:py-24 lg:py-32">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in-up">
-                         
-                          <span className="block text-white">
-                            <span className="bg-clip-text text-white drop-shadow-2xl">
+                          <span className="block">
+                            <span className="bg-clip-text text-black ">
                               {slider.heading}
                             </span>
                           </span>
                         </h1>
 
-                        <p className="max-w-3xl mx-auto text-lg md:text-xl text-white font-light mb-8 animate-fade-in-up delay-100 drop-shadow-2xl">
+                        <p className="max-w-3xl mx-auto text-lg md:text-xl text-black font-light mb-8 animate-fade-in-up delay-100 ">
                           {slider.description}
                         </p>
                       </div>

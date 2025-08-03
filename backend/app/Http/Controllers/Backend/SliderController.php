@@ -44,8 +44,8 @@ class SliderController extends Controller
     {
         $request->validate([
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:1048576', // Validate image file (1048576KB = 1GB)
-            'heading' => 'required',
-            'description' => 'required',
+            'heading' => 'nullable',
+            'description' => 'nullable',
             'link' => 'required',
         ]);
 
