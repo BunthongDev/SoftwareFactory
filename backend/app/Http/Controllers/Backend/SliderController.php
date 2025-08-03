@@ -9,19 +9,33 @@ use Illuminate\Support\Str;
 // Importing the Intervention Image library for image manipulation
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use App\Http\Resources\SliderResource;
 
 
 class SliderController extends Controller
 {
-    
+    //Start slider api
+    public function ApiAllSlider()
+    {
+        $sliders = Slider::latest()->get();
+        // Use the resource to format the collection
+        return SliderResource::collection($sliders);
+    }
+
+    //End slider api
+
+
+
     // Display all sliders
-    public function AllSlider(){
+    public function AllSlider()
+    {
         $slider = Slider::latest()->get();
         return view('backend.slider.all_slider', compact('slider'));
     }
 
     // Add slider
-    public function AddSlider(){
+    public function AddSlider()
+    {
         return view('backend.slider.add_slider');
     }
 
@@ -58,14 +72,15 @@ class SliderController extends Controller
         );
         return redirect()->route('all.slider')->with($notification);
     }
-    
+
     // Edit slider 
-    public function EditSlider($id){
+    public function EditSlider($id)
+    {
         $slider = Slider::find($id);
         return view('backend.slider.edit_slider', compact('slider'));
     }
-    
-    
+
+
     // Update slider
     public function UpdateSlider(Request $request, $id)
     {
@@ -96,20 +111,20 @@ class SliderController extends Controller
         );
         return redirect()->route('all.slider')->with($notification);
     }
-    
+
     // Delete slider
-    public function DeleteSlider($id){
+    public function DeleteSlider($id)
+    {
         $item = Slider::find($id);
         $img = $item->image;
         unlink($img); // delete the image file from the server
-        
+
         Slider::find($id)->delete();
-        
+
         $notification = array(
             'message' => 'Slider Deleted Successfully',
             'alert-type' => 'success'
         );
         return redirect()->back()->with($notification);
     }
-    
 }
