@@ -74,8 +74,7 @@ const Slider = () => {
                     <div className="text-content flex-column-between">
                       <div className="relative z-10 text-center px-4 py-16 md:py-24 lg:py-32">
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in-up">
-                          {/* Gradient text - requires custom CSS or a Tailwind plugin for full browser support,
-                but we can simulate with a strong color. For true gradient text, see note below. */}
+                         
                           <span className="block text-white">
                             <span className="bg-clip-text text-white drop-shadow-2xl">
                               {slider.heading}
