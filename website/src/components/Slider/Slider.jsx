@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react"; // <-- Import useState and useEffect
 import Image from "next/image";
 import Link from "next/link";
 
@@ -12,6 +12,25 @@ import "swiper/css/bundle";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 const Slider = () => {
+  // 1. Create state to store the sliders from your API
+  const [sliders, setSliders] = useState([]);
+
+  // 2. Use useEffect to fetch data when the component loads
+  useEffect(() => {
+    const fetchSliders = async () => {
+      try {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sliders`);
+        const data = await res.json();
+        // API Resources wrap data in a "data" key, so we use data.data
+        setSliders(data.data);
+      } catch (error) {
+        console.error("Failed to fetch sliders:", error);
+      }
+    };
+
+    fetchSliders();
+  }, []); // The empty array [] means this runs only once
+
   return (
     <>
       <div className="slider-block">
@@ -36,117 +55,65 @@ const Slider = () => {
               delay: 4000,
             }}
           >
-            <SwiperSlide>
-              <div className="slider-item slider-first">
-                <div className="bg-img">
-                  <Image
-                    src={"/images/slider/one.jpg"}
-                    width={4000}
-                    height={3000}
-                    alt="slider1"
-                    priority={true}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+            {/* 3. Map over the sliders array to dynamically create slides */}
+            {sliders.map((slider) => (
+              <SwiperSlide key={slider.id}>
+                <div className="slider-item slider-first">
+                  <div className="bg-img">
+                    <Image
+                      src={slider.image} // <-- Use dynamic image URL
+                      width={1124}
+                      height={750}
+                      alt={slider.heading} // <-- Use dynamic alt text
+                      priority={true}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
 
-                <div className="container">
-                  <div className="text-content flex-column-between">
-                    <div className="heading2">
-                      <div className="relative overflow-hidden">
-                        <span className="block relative overflow-hidden">
-                          Simplify and Secure
-                        </span>
-                        <span className="block absolute top-0 left-0 w-full h-full">
-                          Simplify and Secure 
-                        </span>
+                  <div className="container">
+                    <div className="text-content flex-column-between">
+                      <div className="relative z-10 text-center px-4 py-16 md:py-24 lg:py-32">
+                        <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight mb-4 animate-fade-in-up">
+                         
+                          <span className="block text-white">
+                            <span className="bg-clip-text text-white drop-shadow-2xl">
+                              {slider.heading}
+                            </span>
+                          </span>
+                        </h1>
+
+                        <p className="max-w-3xl mx-auto text-lg md:text-xl text-white font-light mb-8 animate-fade-in-up delay-100 drop-shadow-2xl">
+                          {slider.description}
+                        </p>
                       </div>
 
-                      <div className="relative overflow-hidden">
-                        <span className="block relative overflow-hidden">
-                          Our Solution
-                        </span>
-                        <span className="block absolute top-0 left-0 w-full h-full">
-                          Our Solution
-                        </span>
+                      <div className="button-block md:mt-10 mt-6">
+                        <Link
+                          className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-full bg-white text-blue-700 hover:bg-gray-100 shadow-xl transition-all duration-300 ease-in-out md:text-lg md:px-10"
+                          href={slider.link}
+                        >
+                          Explore Solutions
+                          {/* Optional: Add an icon */}
+                          <svg
+                            className="ml-2 -mr-1 h-5 w-5"
+                            xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 20 20"
+                            fill="currentColor"
+                            aria-hidden="true"
+                          >
+                            <path
+                              fillRule="evenodd"
+                              d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+                              clipRule="evenodd"
+                            />
+                          </svg>
+                        </Link>
                       </div>
-                    </div>
-
-                    <div className="body2 mt-3 text-secondary">
-                      {" "}
-                      justify items along the center of the container’s main
-                      axis <br />
-                      justify items along the center of the container’s main
-                      axis
-                    </div>
-
-                    <div className="button-block md:mt-10 mt-6">
-                      <Link
-                        className="button-main bg-blue-700 text-white hover:bg-black"
-                        href="/service"
-                      >
-                        Discovery Now
-                      </Link>
                     </div>
                   </div>
                 </div>
-              </div>
-            </SwiperSlide>
-
-            <SwiperSlide>
-              <div className="slider-item slider-first">
-                <div className="bg-img">
-                  <Image
-                    src={"/images/slider/two.jpg"}
-                    width={4000}
-                    height={3000}
-                    alt="slider1"
-                    priority={true}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-
-                <div className="container">
-                  <div className="text-content flex-column-between">
-                    <div className="heading2">
-                      <div className="relative overflow-hidden">
-                        <span className="block relative overflow-hidden">
-                          Easy to Use{" "}
-                        </span>
-                        <span className="block absolute top-0 left-0 w-full h-full">
-                          Easy to Use
-                        </span>
-                      </div>
-
-                      <div className="relative overflow-hidden">
-                        <span className="block relative overflow-hidden">
-                          Our Solution
-                        </span>
-                        <span className="block absolute top-0 left-0 w-full h-full">
-                          Our Solution
-                        </span>
-                      </div>
-                    </div>
-
-                    <div className="body2 mt-3 text-secondary">
-                      {" "}
-                      justify items along the center of the container’s main
-                      axis <br />
-                      justify items along the center of the container’s main
-                      axis
-                    </div>
-
-                    <div className="button-block md:mt-10 mt-6">
-                      <Link
-                        className="button-main bg-blue-700 text-white hover:bg-black"
-                        href="/service"
-                      >
-                        Discovery Now
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            ))}
           </Swiper>
         </div>
 
