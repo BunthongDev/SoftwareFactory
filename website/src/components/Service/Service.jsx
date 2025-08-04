@@ -10,7 +10,7 @@ const Service = ({ data }) => {
   return (
     <div>
         {/* Main section for the service block  */}
-      <section className="service-block lg:mt-[100px] sm:mt-16 mt-10" ref={ref}>
+      <section id="service" className="service-block lg:mt-[100px] sm:mt-16 mt-10" ref={ref}>
         <div className="container">
             {/* Heading of the services section */}
           <h3 className="heading3 text-center">Our Services</h3>

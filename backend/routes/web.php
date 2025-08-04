@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\SliderController;
-
+use App\Models\Service;
 
 Route::get('/', function () {
     return view('welcome');
@@ -39,6 +40,7 @@ require __DIR__.'/auth.php';
 
 // Slider Routes
 Route::middleware('auth')->group(function () {
+    // SliderController routes
     Route::controller(SliderController::class)->group(function (){
         Route::get('/all/slider', 'AllSlider')->name('all.slider'); // This route displays all sliders
         Route::get('/add/slider', 'AddSlider')->name('add.slider'); // this route shows the add slider form
@@ -47,5 +49,16 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/slider/{id}', 'UpdateSlider')->name('update.slider'); // this route updates the slider
         Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider'); // this route deletes the slider
     });
+
+   
+    Route::controller(ServiceController::class)->group(function () {
+        Route::get('/all/service', 'AllService')->name('all.service'); // This route displays all services
+        Route::get('/add/service', 'AddService')->name('add.service'); // this route shows the add service form
+        Route::post('/store/service', 'StoreService')->name('store.service'); // this route stores the new service
+        Route::get('/edit/service/{id}', 'EditService')->name('edit.service'); // this route shows the edit service form
+        Route::post('/update/service/{id}', 'UpdateService')->name('update.service'); // this route updates the service
+        Route::get('/delete/service/{id}', 'DeleteService')->name('delete.service'); // this route deletes the service
+    });
+    
    
 });

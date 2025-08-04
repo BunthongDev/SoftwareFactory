@@ -10,7 +10,7 @@ const ServiceItem = ({ data, number }) => {
 
   return (
     <div className="service-item p-8 bg-white rounded-lg border border-line hover-box-shadow">
-      <Link className="service-item-main h-full" href={"/"}>
+      <div className="service-item-main h-full">
         <div className="heading flex items-center justify-between">
           {/* Render the Phosphor Icon component if it exists */}
           {IconComponent && (
@@ -34,7 +34,7 @@ const ServiceItem = ({ data, number }) => {
           {data.title}
         </div>
         <div className="text-secondary mt-2">{data.desc}</div>
-      </Link>
+      </div>
     </div>
   );
 };
