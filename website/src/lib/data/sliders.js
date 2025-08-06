@@ -17,4 +17,5 @@ export async function getSliders() {
     console.error("Could not connect to the API to fetch sliders.", error);
     return [];
   }
+  
 }
