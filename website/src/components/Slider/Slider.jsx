@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react"; // <-- Import useState and useEffect
+import React from "react"; // We no longer need useState or useEffect
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,25 +11,12 @@ import "swiper/css/bundle";
 // phosphor icon
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
-const Slider = () => {
-  // 1. Create state to store the sliders from your API
-  const [sliders, setSliders] = useState([]);
-
-  // 2. Use useEffect to fetch data when the component loads
-  useEffect(() => {
-    const fetchSliders = async () => {
-      try {
-        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/sliders`);
-        const data = await res.json();
-        // API Resources wrap data in a "data" key, so we use data.data
-        setSliders(data.data);
-      } catch (error) {
-        console.error("Failed to fetch sliders:", error);
-      }
-    };
-
-    fetchSliders();
-  }, []); // The empty array [] means this runs only once
+// The component now accepts the 'data' directly as a prop
+const Slider = ({ data }) => {
+  // We check if data exists. If not (e.g., API fails), we render nothing.
+  if (!data || data.length === 0) {
+    return null;
+  }
 
   return (
     <>
@@ -55,16 +42,16 @@ const Slider = () => {
               delay: 4000,
             }}
           >
-            {/* 3. Map over the sliders array to dynamically create slides */}
-            {sliders.map((slider) => (
+            {/* Map over the 'data' prop directly */}
+            {data.map((slider) => (
               <SwiperSlide key={slider.id}>
                 <div className="slider-item slider-first">
                   <div className="bg-img">
                     <Image
-                      src={slider.image} // <-- Use dynamic image URL
+                      src={slider.image}
                       width={1124}
                       height={750}
-                      alt={slider.heading} // <-- Use dynamic alt text
+                      alt={slider.heading}
                       priority={true}
                       className="w-full h-full object-cover"
                     />
@@ -89,10 +76,9 @@ const Slider = () => {
                       <div className="button-block md:mt-10 mt-6">
                         <Link
                           className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-semibold rounded-full bg-white text-blue-700 hover:bg-gray-100 shadow-xl transition-all duration-300 ease-in-out md:text-lg md:px-10"
-                          href={slider.link}
+                          href={slider.link || "#"} // Add a fallback for the link
                         >
                           Explore Solutions
-                          {/* Optional: Add an icon */}
                           <svg
                             className="ml-2 -mr-1 h-5 w-5"
                             xmlns="http://www.w3.org/2000/svg"

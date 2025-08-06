@@ -2,7 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 // import "./globals.css";
 import "@/styles/style.scss"
 
-
+// Import the Phosphor Icons stylesheet
+import '@phosphor-icons/web/duotone/style.css';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

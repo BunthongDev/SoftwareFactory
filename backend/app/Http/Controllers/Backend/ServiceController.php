@@ -3,12 +3,26 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ServiceResource;
 use Illuminate\Http\Request;
 use App\Models\Service;
 // REMOVED: Intervention Image and File dependencies are no longer needed.
 
 class ServiceController extends Controller
 {
+
+    //Start service api
+    public function ApiAllService()
+    {
+        // Fetch services, ordered by the 'order' column for correct frontend display
+        $services = Service::orderBy('order', 'asc')->get();
+
+        // Return the collection of services, formatted by ServiceResource
+        return ServiceResource::collection($services);
+    }
+
+    //End service api
+
 
     public function AllService()
     {
