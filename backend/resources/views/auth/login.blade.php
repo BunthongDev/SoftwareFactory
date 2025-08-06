@@ -43,8 +43,8 @@
                                     {{-- with send code verificaion to email --}}
                                     {{-- <form method="POST" action="{{ route('admin.login') }}" class="my-4"> --}} 
                                         
-                                        {{-- without having code verification --}}
-                                    <form method="POST" action="{{ route('login') }}" class="my-4"> 
+                                        {{-- remove 'admin' if you want to login without having code verification --}}
+                                    <form method="POST" action="{{ route('admin.login') }}" class="my-4"> 
                                         
                                         @csrf
 

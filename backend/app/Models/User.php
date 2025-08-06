@@ -24,7 +24,7 @@ class User extends Authenticatable
         // 'image',
     // ];
 
-    protected $guarded = [];
+    protected $guarded = []; // This allows mass assignment for all attributes, you can specify fields if needed
 
     /**
      * The attributes that should be hidden for serialization.

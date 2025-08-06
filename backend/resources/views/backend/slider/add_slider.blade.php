@@ -66,7 +66,7 @@
 
         </div>
         
-        
+        {{-- // previewing an uploaded image before submitting the form --}}
         <script type="text/javascript">
         $(document).ready(function() {
             $('#image').change(function(e) {

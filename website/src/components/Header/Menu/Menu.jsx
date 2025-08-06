@@ -57,12 +57,12 @@ const Menu = () => {
                   pathname === "/service" ? "active" : ""
                 } `}
               >
-                <Link
+                <a
                   className="nav-link text-title flex items-center gap-1"
-                  href="/service"
+                  href="#service"
                 >
                   <span>Our Services</span>
-                </Link>
+                </a>
               </li>
 
               <li
