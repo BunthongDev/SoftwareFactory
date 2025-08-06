@@ -31,7 +31,6 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Heading</th>
                                         <th>Title</th>
                                         <th>Description</th>
                                         <th>Icon</th>
@@ -43,7 +42,6 @@
                                     @foreach ($service as $key => $item)
                                         <tr>
                                             <td>{{ $key + 1 }}</td>
-                                            <td>{{ $item->heading }}</td>
                                             <td>{{ $item->title }}</td>
                                             <td>{{ Str::limit($item->description, 300, '...') }}</td>
                                             <td>

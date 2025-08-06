@@ -13,9 +13,6 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
-            // The heading of the service, which can be used as a title or main heading.
-            $table->string('heading');
-
             // The title of the service (e.g., "Game Development").
             $table->string('title');
 
@@ -26,7 +23,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
 
             // To control the display order of the services on the frontend.
-            $table->integer('order')->default(0);
+            $table->integer('order')->default(0)->nullable();
             $table->timestamps();
         });
     }
