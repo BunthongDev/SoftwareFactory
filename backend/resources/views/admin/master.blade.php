@@ -38,6 +38,10 @@
         rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
+        
+      {{-- jQuery is required for the image preview script --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
 
 
 </head>
@@ -107,7 +111,7 @@
 
 
     {{-- For icon live preview when input in the fill form --}}
-   
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
@@ -122,6 +126,7 @@
         });
     </script>
 
+  
     {{-- Toastr Notifications --}}
     <script>
         @if (Session::has('message'))
@@ -145,8 +150,8 @@
             }
         @endif
     </script>
-    
-    
+
+
 
 
 
