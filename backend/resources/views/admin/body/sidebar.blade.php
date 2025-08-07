@@ -86,6 +86,44 @@
                         </ul>
                     </div>
                 </li>
+                
+                <li>
+                    <a href="#sidebarError" data-bs-toggle="collapse">
+                        <i data-feather="award"></i>
+                        <span> Manage Case Study </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarError">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.casestudy') }}" class="tp-link">All Case Studies</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.casestudy') }}" class="tp-link">Add Case Study</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                
+                {{-- <li>
+                    <a href="#sidebarError" data-bs-toggle="collapse">
+                        <i data-feather="users"></i>
+                        <span> Manage Testimonial </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarError">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('all.testimonial') }}" class="tp-link">All Testimonials</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('add.testimonial') }}" class="tp-link">Add Testimonial</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li> --}}
 
 
 

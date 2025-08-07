@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -50,7 +51,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/slider/{id}', 'DeleteSlider')->name('delete.slider'); // this route deletes the slider
     });
 
-   
+    // SeviceController routes, this section handles the service management routes
     Route::controller(ServiceController::class)->group(function () {
         Route::get('/all/service', 'AllService')->name('all.service'); // This route displays all services
         Route::get('/add/service', 'AddService')->name('add.service'); // this route shows the add service form
@@ -58,6 +59,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/edit/service/{id}', 'EditService')->name('edit.service'); // this route shows the edit service form
         Route::post('/update/service/{id}', 'UpdateService')->name('update.service'); // this route updates the service
         Route::get('/delete/service/{id}', 'DeleteService')->name('delete.service'); // this route deletes the service
+    });
+
+    // CaseStudyController routes, this section handles the case study management routes
+    Route::controller(CaseStudyController::class)->group(function () {
+        Route::get('/all/case-study', 'AllCaseStudy')->name('all.casestudy'); // This route displays all case studies
+        Route::get('/add/case-study', 'AddCaseStudy')->name('add.casestudy'); // this route shows the add case study form
+        Route::post('/store/case-study', 'StoreCaseStudy')->name('store.casestudy'); // this route stores the new case study
+        Route::get('/edit/case-study/{id}', 'EditCaseStudy')->name('edit.casestudy'); // this route shows the edit case study form
+        Route::post('/update/case-study/{id}', 'UpdateCaseStudy')->name('update.casestudy'); // this route updates the case study
+        Route::get('/delete/case-study/{id}', 'DeleteCaseStudy')->name('delete.casestudy'); // this route deletes the case study
     });
     
    

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
 use Illuminate\Http\Request;
@@ -15,3 +16,6 @@ Route::get('/sliders', [SliderController::class, 'ApiAllSlider']);
 
 // Service api
 Route::get('/services', [ServiceController::class, 'ApiAllService']);
+
+// Case Study api
+Route::get('/case-studies', [CaseStudyController::class, 'ApiAllCaseStudy']);

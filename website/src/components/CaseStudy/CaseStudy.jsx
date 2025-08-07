@@ -4,62 +4,16 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-// All 6 of your case studies are included
-const caseStudiesData = [
-  {
-    id: 1,
-    title: "Project Titan: A Next-Gen Game Launch",
-    description:
-      "See how we took a gaming concept from initial design to a successful, scalable launch on multiple platforms.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/project-titan-game-dev",
-  },
-  {
-    id: 2,
-    title: "FinApp: Secure Mobile Banking Solution",
-    description:
-      "We partnered with a leading fintech firm to build a high-performance mobile app that boosted user engagement by 40%.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/finapp-mobile-banking",
-  },
-  {
-    id: 3,
-    title: "E-Commerce Website Overhaul for StyleHub",
-    description:
-      "A complete redesign and development of an e-commerce site, resulting in a 60% increase in conversions.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/stylehub-ecommerce",
-  },
-  {
-    id: 4,
-    title: "Automated Logistics System for SupplyCo",
-    description:
-      "We engineered a robust software system that streamlined operations and reduced processing time by 50%.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/supplyco-logistics-system",
-  },
-  {
-    id: 5,
-    title: "HealthTrack: An Intuitive UI/UX Redesign",
-    description:
-      "Our user-centric design process transformed the HealthTrack app, leading to a 5-star rating on the app store.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/healthtrack-ui-ux",
-  },
-  {
-    id: 6,
-    title: "Data-Driven Growth for Marketly",
-    description:
-      "Unlocking actionable insights from complex datasets to drive marketing strategy and increase client ROI by 35%.",
-    image: "/images/caseone.webp",
-    link: "/case-studies/marketly-data-analytics",
-  },
-];
+// Accept `data` as a prop instead of using hardcoded data
+const CaseStudy = ({ data }) => {
+  // If there's no data or it's empty, don't render anything
+  if (!data || data.length === 0) {
+    return null;
+  }
 
-// To create a seamless loop, we duplicate the data
-const duplicatedStudies = [...caseStudiesData, ...caseStudiesData];
+  // To create a seamless loop, we duplicate the fetched data
+  const duplicatedStudies = [...data, ...data];
 
-const CaseStudy = () => {
   return (
     <section className="case-study-block bg-white lg:py-24 sm:py-20 py-16">
       <div className="container">
@@ -92,9 +46,10 @@ const CaseStudy = () => {
                 <div className="block h-full bg-gray-50 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 flex-col border-solid border-2 border-black hover:border-gray-300">
                   <div className="image-wrapper overflow-hidden">
                     <Image
-                      width={800}
-                      height={600}
+                      width={500}
+                      height={350}
                       className="w-full h-48 object-cover"
+                      // Use the 'image_url' from your API response
                       src={study.image}
                       alt={study.title}
                     />
