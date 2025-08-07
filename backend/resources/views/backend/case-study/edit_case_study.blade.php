@@ -33,13 +33,13 @@
 
 
                                 <div class="col-md-12">
-                                    <label for="description" class="form-label">Case Study Description</label>
+                                    <label for="description" class="form-label">Case Study Descriptio (Optional)</label>
                                     <textarea name="description" class="form-control" placeholder="Enter Case Study Description">{{ $casestudy->description }}</textarea>
                                 </div>
 
 
                                 <div class="col-md-6">
-                                    <label for="image" class="form-label">Case Study Image</label>
+                                    <label for="image" class="form-label">Case Study Image ( 500x350px )</label>
                                     <input type="file" name="image" class="form-control" id="image">
                                 </div>
 

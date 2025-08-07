@@ -31,13 +31,13 @@
 
                                 {{-- This field matches the 'description' column in your migration --}}
                                 <div class="col-md-12">
-                                    <label for="description" class="form-label">Case Study Description</label>
+                                    <label for="description" class="form-label">Case Study Description (Optional)</label>
                                     <textarea name="description" class="form-control" placeholder="Enter case study description"></textarea>
                                 </div>
 
                                 {{-- This field matches the 'image' column in your migration --}}
                                 <div class="col-md-6">
-                                    <label for="image_input" class="form-label">Case Study Image</label>
+                                    <label for="image_input" class="form-label">Case Study Image ( 500x350px )</label>
                                     <input type="file" name="image" class="form-control" id="image_input" required>
                                 </div>
                                 

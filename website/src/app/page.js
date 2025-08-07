@@ -12,12 +12,14 @@ import Partner from "@/components/Partner/Partner";
 // Import the data-fetching functions 
 import { getServices } from "@/lib/data/services";
 import { getSliders } from "@/lib/data/sliders";
+import { getCaseStudies } from "@/lib/data/casestudies";
 
 export default async function Home() {
   // This part of the code doesn't need to change at all!
-  const [liveServiceData, liveSliderData] = await Promise.all([
+  const [liveServiceData, liveSliderData, liveCaseStudyData] = await Promise.all([
     getServices(),
     getSliders(),
+    getCaseStudies(),
   ]);
 
   return (
@@ -30,7 +32,7 @@ export default async function Home() {
       <main className="content">
         <Slider data={liveSliderData} />
         <Service data={liveServiceData} />
-        <CaseStudy />
+        <CaseStudy data={liveCaseStudyData}/>
         <Testimonial />
         <Blog data={BlogData} />
       </main>
