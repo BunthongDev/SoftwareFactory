@@ -3,6 +3,7 @@
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\TopNavbarController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,3 +20,6 @@ Route::get('/services', [ServiceController::class, 'ApiAllService']);
 
 // Case Study api
 Route::get('/case-studies', [CaseStudyController::class, 'ApiAllCaseStudy']);
+
+// Top Navbar API
+Route::get('/top-navbar-settings', [TopNavbarController::class, 'ApiTopNav']);

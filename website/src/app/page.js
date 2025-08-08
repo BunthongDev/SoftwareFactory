@@ -13,19 +13,22 @@ import Partner from "@/components/Partner/Partner";
 import { getServices } from "@/lib/data/services";
 import { getSliders } from "@/lib/data/sliders";
 import { getCaseStudies } from "@/lib/data/casestudies";
+import { getTopNavData } from "@/lib/data/topnav";
+
 
 export default async function Home() {
   // This part of the code doesn't need to change at all!
-  const [liveServiceData, liveSliderData, liveCaseStudyData] = await Promise.all([
+  const [liveServiceData, liveSliderData, liveCaseStudyData, liveTopNavData] = await Promise.all([
     getServices(),
     getSliders(),
     getCaseStudies(),
+    getTopNavData(),
   ]);
 
   return (
     <div className="overflow-hidden">
       <header id="header">
-        <TopNav />
+        <TopNav data={liveTopNavData}/>
         <Menu />
       </header>
 
@@ -33,7 +36,7 @@ export default async function Home() {
         <Slider data={liveSliderData} />
         <Service data={liveServiceData} />
         <CaseStudy data={liveCaseStudyData}/>
-        <Testimonial />
+        <Testimonial/>
         <Blog data={BlogData} />
       </main>
 
