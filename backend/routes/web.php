@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\TopNavbarController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ServiceController;
@@ -80,4 +81,15 @@ Route::middleware('auth')->group(function () {
         // Route to handle the form submission and update the settings
         Route::post('/top-navbar/update/{id}', 'UpdateTopNav')->name('update.topnav');
     });
+
+
+    // Route to display the menu management page
+    Route::controller(MenuController::class)->group(function () {
+        // Route to display the menu management page
+        Route::get('/menu/settings', 'EditMenu')->name('edit.menu.settings');
+
+        // Route to handle the form submission and update all settings
+        Route::post('/menu/update', 'UpdateMenuSettings')->name('update.menu.settings');
+    });
+    
 });
