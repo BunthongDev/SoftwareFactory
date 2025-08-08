@@ -48,6 +48,23 @@
                             </li> -->
 
                 <li class="menu-title">Pages</li>
+                
+                <li>
+                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                        <i data-feather="link"></i>
+                        <span> Manage Top Navbar </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="sidebarAuth">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('edit.topnav') }}" class="tp-link">Top Navbar</a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </li>
 
                 <li>
                     <a href="#sidebarAuth" data-bs-toggle="collapse">

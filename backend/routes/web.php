@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\TopNavbarController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\ProfileController;
@@ -70,6 +71,13 @@ Route::middleware('auth')->group(function () {
         Route::post('/update/case-study/{id}', 'UpdateCaseStudy')->name('update.casestudy'); // this route updates the case study
         Route::get('/delete/case-study/{id}', 'DeleteCaseStudy')->name('delete.casestudy'); // this route deletes the case study
     });
-    
-   
+
+    // TopNavbarController routes, this section handles the top navbar management routes 
+    Route::controller(TopNavbarController::class)->group(function () {
+        // Route to display the settings page
+        Route::get('/top-navbar/settings', 'EditTopNav')->name('edit.topnav');
+
+        // Route to handle the form submission and update the settings
+        Route::post('/top-navbar/update/{id}', 'UpdateTopNav')->name('update.topnav');
+    });
 });
