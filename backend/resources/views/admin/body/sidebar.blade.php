@@ -50,12 +50,12 @@
                 <li class="menu-title">Pages</li>
                 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                    <a href="#topNavbar" data-bs-toggle="collapse">
                         <i data-feather="link"></i>
                         <span> Manage Top Navbar </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse" id="topNavbar">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('edit.topnav') }}" class="tp-link">Top Navbar</a>
@@ -65,14 +65,33 @@
                         </ul>
                     </div>
                 </li>
+                
+                
+                <li>
+                    <a href="#menu" data-bs-toggle="collapse">
+                        <i data-feather="menu"></i>
+                        <span> Manage Menu </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="menu">
+                        <ul class="nav-second-level">
+                            <li>
+                                <a href="{{ route('edit.menu.settings') }}" class="tp-link">Menu Settings</a>
+                            </li>
+                            
+
+                        </ul>
+                    </div>
+                </li>
+                
 
                 <li>
-                    <a href="#sidebarAuth" data-bs-toggle="collapse">
+                    <a href="#sliders" data-bs-toggle="collapse">
                         <i data-feather="sliders"></i>
                         <span> Manage Sliders </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarAuth">
+                    <div class="collapse" id="sliders">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('all.slider') }}" class="tp-link">All Sliders</a>
@@ -86,12 +105,12 @@
                 </li>
 
                 <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
+                    <a href="#services" data-bs-toggle="collapse">
                         <i data-feather="layers"></i>
                         <span> Manage Services </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="services">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('all.service') }}" class="tp-link">All Services</a>
@@ -105,12 +124,12 @@
                 </li>
                 
                 <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
+                    <a href="#caseStudy" data-bs-toggle="collapse">
                         <i data-feather="award"></i>
                         <span> Manage Case Study </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="caseStudy">
                         <ul class="nav-second-level">
                             <li>
                                 <a href="{{ route('all.casestudy') }}" class="tp-link">All Case Studies</a>

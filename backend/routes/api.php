@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CaseStudyController;
+use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TopNavbarController;
@@ -23,3 +24,6 @@ Route::get('/case-studies', [CaseStudyController::class, 'ApiAllCaseStudy']);
 
 // Top Navbar API
 Route::get('/top-navbar-settings', [TopNavbarController::class, 'ApiTopNav']);
+
+// Menu Settings API
+Route::get('/menu-data', [MenuController::class, 'ApiMenu']);

@@ -14,22 +14,28 @@ import { getServices } from "@/lib/data/services";
 import { getSliders } from "@/lib/data/sliders";
 import { getCaseStudies } from "@/lib/data/casestudies";
 import { getTopNavData } from "@/lib/data/topnav";
+import { getMenuData } from "@/lib/data/menu";
 
 
 export default async function Home() {
-  // This part of the code doesn't need to change at all!
-  const [liveServiceData, liveSliderData, liveCaseStudyData, liveTopNavData] = await Promise.all([
-    getServices(),
-    getSliders(),
-    getCaseStudies(),
-    getTopNavData(),
-  ]);
+
+  // Fetch data for all components
+  const [liveServiceData, liveSliderData, liveCaseStudyData, liveTopNavData, liveMenuData] =
+    await Promise.all([
+      getServices(),
+      getSliders(),
+      getCaseStudies(),
+      getTopNavData(),
+      getMenuData(),
+      
+      
+    ]);
 
   return (
     <div className="overflow-hidden">
       <header id="header">
         <TopNav data={liveTopNavData}/>
-        <Menu />
+        <Menu data={liveMenuData}/>
       </header>
 
       <main className="content">

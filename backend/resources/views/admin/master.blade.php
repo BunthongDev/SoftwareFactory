@@ -38,9 +38,12 @@
         rel="stylesheet" type="text/css" />
     <link href="{{ asset('backend/assets/libs/datatables.net-select-bs5/css/select.bootstrap5.min.css') }}"
         rel="stylesheet" type="text/css" />
-        
-      {{-- jQuery is required for the image preview script --}}
+
+
+    {{-- jQuery is required for some of the scripts --}}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    
 
 
 
@@ -108,6 +111,9 @@
     {{-- SweetAlert2 --}}
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('backend/assets/js/code.js') }}"></script>
+    
+    {{-- SortableJS for drag-and-drop functionality --}}
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
 
     {{-- For icon live preview when input in the fill form --}}
@@ -126,7 +132,7 @@
         });
     </script>
 
-  
+
     {{-- Toastr Notifications --}}
     <script>
         @if (Session::has('message'))

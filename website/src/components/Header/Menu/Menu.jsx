@@ -2,119 +2,70 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
-const Menu = () => {
+const Menu = ({ data }) => {
   const pathname = usePathname();
   const [fixedHeader, setFixedHeader] = useState(false);
   const [openMenuMobile, setOpenMenuMobile] = useState(false);
 
+  const { settings = {}, menu_items = [] } = data || {};
+
+
+  useEffect(() => {
+    const handleScroll = () => setFixedHeader(window.scrollY > 100);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
     <>
-      <div className={`header-menu bg-white ${fixedHeader ? "fixed" : ""} `}>
+      <div
+        className={`header-menu ${fixedHeader ? "fixed" : ""}`}
+        style={{ backgroundColor: settings.background_color || "#FFFFFF" }}
+      >
         <div className="container flex items-center justify-between h-20">
           <Link className="menu-left-block" href="/">
+
             <Image
-              src={"/images/Software-Factory-Logo.png"}
-              width={2000}
-              height={1000}
+              src={settings.logo_url || "/images/Software-Factory-Logo.png"}
+              width={480}
+              height={200}
               alt="logo"
               priority={true}
-              className="w-[300px] max-sm:w-[132px]"
+              className="w-[170px] h-auto max-sm:w-[132px]"
             />
           </Link>
+          
           <div className="menu-center-block h-full">
             <ul className="menu-nav flex items-center xl:gap-2 h-full">
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/" ? "active" : ""
-                } `}
-              >
-                <Link
-                  className="nav-link text-title flex items-center gap-1"
-                  href="/"
+              {menu_items.map((item) => (
+                <li
+                  key={item.label}
+                  className={`nav-item h-full flex items-center justify-center home ${
+                    pathname === item.link ? "active" : ""
+                  }`}
                 >
-                  <span>Home</span>
-                </Link>
-              </li>
-
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/about" ? "active" : ""
-                } `}
-              >
-                <Link
-                  className="nav-link text-title flex items-center gap-1"
-                  href="/about"
-                >
-                  <span>About Us</span>
-                </Link>
-              </li>
-
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/service" ? "active" : ""
-                } `}
-              >
-                <a
-                  className="nav-link text-title flex items-center gap-1"
-                  href="#service"
-                >
-                  <span>Our Services</span>
-                </a>
-              </li>
-
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/case-studies" ? "active" : ""
-                } `}
-              >
-                <Link
-                  className="nav-link text-title flex items-center gap-1"
-                  href="/case-studies"
-                >
-                  <span>Case Studies</span>
-                </Link>
-              </li>
-
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/blog" ? "active" : ""
-                } `}
-              >
-                <Link
-                  className="nav-link text-title flex items-center gap-1"
-                  href="/blog"
-                >
-                  <span>Blog</span>
-                </Link>
-              </li>
-
-              <li
-                className={`nav-item h-full flex items-center justify-center home ${
-                  pathname === "/contact" ? "active" : ""
-                } `}
-              >
-                <Link
-                  className="nav-link text-title flex items-center gap-1"
-                  href="/contact"
-                >
-                  <span>Contact Us</span>
-                </Link>
-              </li>
+                  <Link
+                    className="nav-link text-title flex items-center gap-1"
+                    href={item.link}
+                  >
+                    <span>{item.label}</span>
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div className="menu-right-block flex items-center">
             <div className="icon-call">
-              <i className="icon-phone-call text-4xl"></i>{" "}
+              <i className="icon-phone-call text-4xl"></i>
             </div>
             <div className="text ml-3">
-              <div className="text caption1"> Free Consultancy </div>
-              <div className="number text-button"> +123 456 789 </div>
+              <div className="text caption1">{settings.consultancy_text}</div>
+              <div className="number text-button">{settings.phone_number}</div>
             </div>
-
             <div
               className="menu-humburger hidden pointer"
               onClick={() => setOpenMenuMobile(!openMenuMobile)}
@@ -124,63 +75,24 @@ const Menu = () => {
           </div>
         </div>
 
-        <div id="menu-mobile-block" className={` ${openMenuMobile && "open"} `}>
+        <div id="menu-mobile-block" className={` ${openMenuMobile && "open"}`}>
           <div className="menu-mobile-main">
             <div className="container">
               <ul className="menu-nav-mobile h-full pt-1 pb-1">
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/"
+                {menu_items.map((item) => (
+                  <li
+                    key={item.label}
+                    className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer"
                   >
-                    <span className="font-bold">Home</span>
-                  </a>
-                </li>
-
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/about"
-                  >
-                    <span className="font-bold">About Us</span>
-                  </a>
-                </li>
-
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/service"
-                  >
-                    <span className="font-bold">Service</span>
-                  </a>
-                </li>
-
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/case-studies"
-                  >
-                    <span className="font-bold">Case Studies </span>
-                  </a>
-                </li>
-
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/blog"
-                  >
-                    <span className="font-bold">Blog</span>
-                  </a>
-                </li>
-
-                <li className="nav-item-mobile h-full flex-column gap-2 pt-2 pl-3 pr-3 pb-2 pointer">
-                  <a
-                    className="nav-link-mobile flex items-center justify-between"
-                    href="/contact"
-                  >
-                    <span className="font-bold">Contact Us</span>
-                  </a>
-                </li>
+                    <Link
+                      className="nav-link-mobile flex items-center justify-between"
+                      href={item.link}
+                      onClick={() => setOpenMenuMobile(false)}
+                    >
+                      <span className="font-bold">{item.label}</span>
+                    </Link>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
