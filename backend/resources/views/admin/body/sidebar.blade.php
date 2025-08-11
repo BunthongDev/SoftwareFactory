@@ -48,7 +48,7 @@
                             </li> -->
 
                 <li class="menu-title">Pages</li>
-                
+
                 <li>
                     <a href="#topNavbar" data-bs-toggle="collapse">
                         <i data-feather="link"></i>
@@ -60,13 +60,13 @@
                             <li>
                                 <a href="{{ route('edit.topnav') }}" class="tp-link">Top Navbar</a>
                             </li>
-                            
+
 
                         </ul>
                     </div>
                 </li>
-                
-                
+
+
                 <li>
                     <a href="#menu" data-bs-toggle="collapse">
                         <i data-feather="menu"></i>
@@ -78,12 +78,12 @@
                             <li>
                                 <a href="{{ route('edit.menu.settings') }}" class="tp-link">Menu Settings</a>
                             </li>
-                            
+
 
                         </ul>
                     </div>
                 </li>
-                
+
 
                 <li>
                     <a href="#sliders" data-bs-toggle="collapse">
@@ -122,7 +122,7 @@
                         </ul>
                     </div>
                 </li>
-                
+
                 <li>
                     <a href="#caseStudy" data-bs-toggle="collapse">
                         <i data-feather="award"></i>
@@ -141,25 +141,26 @@
                         </ul>
                     </div>
                 </li>
-                
-                {{-- <li>
-                    <a href="#sidebarError" data-bs-toggle="collapse">
+
+                <li>
+                    <a href="#Testimonial" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
                         <span> Manage Testimonial </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="sidebarError">
+                    <div class="collapse" id="Testimonial">
                         <ul class="nav-second-level">
                             <li>
-                                <a href="{{ route('all.testimonial') }}" class="tp-link">All Testimonials</a>
+                                {{-- Use the conventional 'index' route name --}}
+                                <a href="{{ route('testimonial.index') }}" class="tp-link">All Testimonials</a>
                             </li>
                             <li>
-                                <a href="{{ route('add.testimonial') }}" class="tp-link">Add Testimonial</a>
+                                {{-- Use the conventional 'create' route name --}}
+                                <a href="{{ route('testimonial.create') }}" class="tp-link">Add Testimonial</a>
                             </li>
-
                         </ul>
                     </div>
-                </li> --}}
+                </li>
 
 
 
