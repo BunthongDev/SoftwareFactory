@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\CaseStudyController;
+use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
@@ -32,5 +33,9 @@ Route::get('/menu-data', [MenuController::class, 'ApiMenu']);
 
 // Testimonial API
 Route::get('/testimonials', [TestimonialController::class, 'ApiAllTestimonials']);
+
+// Our's Client API
+Route::get('/clients', [ClientController::class, 'ApiAllClients']);
+
 
 

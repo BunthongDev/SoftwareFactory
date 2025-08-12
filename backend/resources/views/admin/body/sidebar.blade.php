@@ -161,6 +161,27 @@
                         </ul>
                     </div>
                 </li>
+                
+                
+                <li>
+                    <a href="#OurClient" data-bs-toggle="collapse">
+                        <i data-feather="user-plus"></i>
+                        <span> Manage Our's Client </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="OurClient">
+                        <ul class="nav-second-level">
+                            <li>
+                                {{-- Use the conventional 'index' route name --}}
+                                <a href="{{ route('client.index') }}" class="tp-link">All Our's Client</a>
+                            </li>
+                            <li>
+                                {{-- Use the conventional 'create' route name --}}
+                                <a href="{{ route('client.create') }}" class="tp-link">Add Our's Client</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
 
 
 

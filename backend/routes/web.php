@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\TopNavbarController;
 use App\Http\Controllers\Backend\CaseStudyController;
@@ -95,5 +96,11 @@ Route::middleware('auth')->group(function () {
 
     // TestimonialController routes using the resourceful convention
     Route::resource('testimonial', TestimonialController::class)->middleware(['auth']);
+
+    // ClientController routes using the resourceful convention 
+    //(it's a powerful shortcut. It automatically creates a full set of common routes needed for a "resource" like a client, a blog post, or a product.)
+    // As you can see, it's a much cleaner and more conventional way to define all the routes you need for CRUD (Create, Read, Update, Delete) functionality.
+    // Your older method using Route::controller works perfectly fine, but Route::resource is the modern best practice because it's more concise and follows a standard that all Laravel developers recognize.
+    Route::resource('client', ClientController::class);
     
 });
