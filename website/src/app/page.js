@@ -4,6 +4,7 @@ import Slider from "@/components/Slider/slider";
 import Service from "@/components/Service/Service";
 import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import Testimonial from "@/components/Testimonial/Testimonial";
+import OurClient from "@/components/OurClient/OurClient";
 import Blog from "@/components/Blog/Blog";
 import BlogData from "@/data/blog.json";
 import Footer from "@/components/Footer/Footer";
@@ -45,6 +46,7 @@ export default async function Home() {
         <Service data={liveServiceData} />
         <CaseStudy data={liveCaseStudyData}/>
         <Testimonial testimonialData={liveTestimonialData}/>
+        <OurClient />
         <Blog data={BlogData} />
       </main>
 
