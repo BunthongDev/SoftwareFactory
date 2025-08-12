@@ -35,7 +35,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="avatar_input" class="form-label">Client Avatar (100x200 px)</label>
+                                    <label for="avatar_input" class="form-label">Client Avatar (96x96 px)</label>
                                     <input type="file" name="avatar" class="form-control" id="avatar_input" >
                                 </div>
                                 

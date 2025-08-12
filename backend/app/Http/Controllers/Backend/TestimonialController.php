@@ -58,7 +58,7 @@ class TestimonialController extends Controller
         $save_url = 'upload/testimonials/' . $name_gen;
 
         $resizedImage = $manager->read($image);
-        $resizedImage->resize(100, 200);
+        $resizedImage->resize(96, 96);
         $resizedImage->save(public_path($save_url));
 
 

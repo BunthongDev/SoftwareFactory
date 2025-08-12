@@ -15,18 +15,20 @@ import { getSliders } from "@/lib/data/sliders";
 import { getCaseStudies } from "@/lib/data/casestudies";
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
+import { getTestimonialData } from "@/lib/data/testimonials";
 
 
 export default async function Home() {
 
   // Fetch data for all components
-  const [liveServiceData, liveSliderData, liveCaseStudyData, liveTopNavData, liveMenuData] =
+  const [liveServiceData, liveSliderData, liveCaseStudyData, liveTopNavData, liveMenuData, liveTestimonialData] =
     await Promise.all([
       getServices(),
       getSliders(),
       getCaseStudies(),
       getTopNavData(),
       getMenuData(),
+      getTestimonialData(),
       
       
     ]);
@@ -42,7 +44,7 @@ export default async function Home() {
         <Slider data={liveSliderData} />
         <Service data={liveServiceData} />
         <CaseStudy data={liveCaseStudyData}/>
-        <Testimonial/>
+        <Testimonial testimonialData={liveTestimonialData}/>
         <Blog data={BlogData} />
       </main>
 

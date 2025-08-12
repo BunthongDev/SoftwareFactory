@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\TopNavbarController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,3 +32,5 @@ Route::get('/menu-data', [MenuController::class, 'ApiMenu']);
 
 // Testimonial API
 Route::get('/testimonials', [TestimonialController::class, 'ApiAllTestimonials']);
+
+
