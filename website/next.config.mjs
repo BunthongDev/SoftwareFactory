@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Add this 'images' object
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
         protocol: "http",
@@ -9,6 +9,7 @@ const nextConfig = {
         port: "8001",
         pathname: "/upload/**",
       },
+      
     ],
   },
 };
