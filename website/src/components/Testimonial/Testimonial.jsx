@@ -93,7 +93,7 @@ const Testimonial = ({ testimonialData }) => {
       <section className="bg-slate-50 py-24 sm:py-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 max-w-3xl mx-auto ">
-            <h2 className="text-8xl font-bold tracking-tight text-gray-900 sm:text-5xl">
+            <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
               Trusted By Professionals
             </h2>
             <p className="mt-4 text-xl leading-8 text-gray-600">
