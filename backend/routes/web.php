@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\TestimonialController;
 use App\Models\Service;
 
 Route::get('/', function () {
@@ -91,5 +92,8 @@ Route::middleware('auth')->group(function () {
         // Route to handle the form submission and update all settings
         Route::post('/menu/update', 'UpdateMenuSettings')->name('update.menu.settings');
     });
+
+    // TestimonialController routes using the resourceful convention
+    Route::resource('testimonial', TestimonialController::class)->middleware(['auth']);
     
 });
