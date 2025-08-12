@@ -9,18 +9,7 @@ const nextConfig = {
         port: "8001",
         pathname: "/upload/**",
       },
-      {
-        protocol: "https",
-        hostname: "img.logoipsum.com",
-        port: "",
-        pathname: "/**",
-      },
-      {
-        protocol: "https",
-        hostname: "placehold.co",
-        port: "",
-        pathname: "/**",
-      },
+      
     ],
   },
 };
