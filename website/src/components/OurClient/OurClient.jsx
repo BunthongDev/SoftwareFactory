@@ -73,10 +73,12 @@ const OurClient = ({ clientData }) => {
           animation-play-state: paused;
         }
       `}</style>
-      <section className="bg-slate-100 py-24 sm:py-32">
+      <section id="ourclient" className="bg-slate-100 py-24 sm:py-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-6xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+            <h2
+              className="text-6xl font-bold tracking-tight text-gray-900 sm:text-6xl"
+            >
               Our Clients 🏅
             </h2>
           </div>
