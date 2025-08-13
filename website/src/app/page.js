@@ -6,7 +6,6 @@ import CaseStudy from "@/components/CaseStudy/CaseStudy";
 import Testimonial from "@/components/Testimonial/Testimonial";
 import OurClient from "@/components/OurClient/OurClient";
 import Blog from "@/components/Blog/Blog";
-import BlogData from "@/data/blog.json";
 import Footer from "@/components/Footer/Footer";
 import Partner from "@/components/Partner/Partner";
 
@@ -17,7 +16,8 @@ import { getCaseStudies } from "@/lib/data/casestudies";
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getTestimonialData } from "@/lib/data/testimonials";
-import {getClientData} from "@/lib/data/ourclients";
+import { getClientData } from "@/lib/data/ourclients";
+import { getLatestBlogData } from "@/lib/data/latest-blogs"; // 1. Import the new function
 
 export default async function Home() {
   // Fetch data for all components
@@ -29,6 +29,7 @@ export default async function Home() {
     liveMenuData,
     liveTestimonialData,
     liveClientData,
+    liveLatestBlogData, // 2. Add a variable for the latest blog data
   ] = await Promise.all([
     getServices(),
     getSliders(),
@@ -37,6 +38,7 @@ export default async function Home() {
     getMenuData(),
     getTestimonialData(),
     getClientData(),
+    getLatestBlogData(), // 3. Call the new function
   ]);
 
   return (
@@ -52,7 +54,8 @@ export default async function Home() {
         <CaseStudy data={liveCaseStudyData} />
         <Testimonial testimonialData={liveTestimonialData} />
         <OurClient clientData={liveClientData} />
-        <Blog data={BlogData} />
+        {/* 4. Pass the live data to the Blog component */}
+        <Blog data={liveLatestBlogData} />
       </main>
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10 " />

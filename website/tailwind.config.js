@@ -12,6 +12,11 @@ module.exports = {
         foreground: "var(--foreground)",
       },
       
+      // Add Khmer 'Battambang' font
+      fontFamily: {
+        battambang: ["var(--font-battambang)"],
+      },
+
       // dropShadow: {
       //   '3xl': '0 35px 35px rgba(0, 0, 0, 0.25)',
       //   '4xl': [

@@ -7,6 +7,11 @@ import * as Icon from "@phosphor-icons/react/dist/ssr";
 
 // A single blog card component, redesigned for a horizontal list layout.
 const BlogCard = ({ post }) => {
+  const avatarSrc =
+    post.avatar && post.avatar.includes("/upload/")
+      ? post.avatar
+      : "/images/avatar-writer-image/crop-image-60x60.jpeg";
+
   return (
     <motion.div
       className="bg-white rounded-2xl shadow-lg overflow-hidden group grid sm:grid-cols-3"
@@ -19,9 +24,8 @@ const BlogCard = ({ post }) => {
         <Image
           src={post.img}
           alt={post.title}
-          layout="fill"
-          objectFit="cover"
-          className="group-hover:scale-105 transition-transform duration-300 ease-in-out"
+          fill
+          className="object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out"
         />
       </div>
       <div className="p-6 sm:col-span-2 flex flex-col">
@@ -30,13 +34,14 @@ const BlogCard = ({ post }) => {
             {post.category}
           </span>
         </div>
-        <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors duration-300">
-          <Link href={`/blog/${post.id}`}>{post.title}</Link>
+        <h3 className="text-2xl font-bold text-black mb-3 group-hover:text-blue-600 transition-colors duration-300 font-battambang">
+          {/* UPDATED: The link now uses post.slug */}
+          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
-        <p className="text-gray-600 mb-4 flex-grow">{post.desc}</p>
+        <p className="text-gray-600 mb-4 flex-grow font-battambang">{post.desc}</p>
         <div className="flex items-center text-sm text-gray-500 border-t border-gray-100 pt-4 mt-auto">
           <Image
-            src={post.avatar}
+            src={avatarSrc}
             alt={post.author}
             width={40}
             height={40}
@@ -58,20 +63,20 @@ const BlogList = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // Get all unique categories from the blog data
   const categories = useMemo(() => {
+    if (!data) return ["All"];
     const allCategories = data.map((post) => post.category);
     return ["All", ...new Set(allCategories)];
   }, [data]);
 
-  // Filter posts based on search term and selected category
   const filteredPosts = useMemo(() => {
+    if (!data) return [];
     return data.filter((post) => {
       const matchesCategory =
         selectedCategory === "All" || post.category === selectedCategory;
       const matchesSearch =
-        post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        post.desc.toLowerCase().includes(searchTerm.toLowerCase());
+        (post.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (post.desc || "").toLowerCase().includes(searchTerm.toLowerCase());
       return matchesCategory && matchesSearch;
     });
   }, [data, searchTerm, selectedCategory]);
@@ -80,23 +85,24 @@ const BlogList = ({ data }) => {
     <section className="bg-slate-50 py-24 sm:py-32">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-12">
-          {/* Left Column: Filters and Search */}
           <aside className="lg:col-span-1">
             <div className="sticky top-24">
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Icon.MagnifyingGlassIcon size={20} className="text-gray-400" />
+                  <Icon.MagnifyingGlassIcon
+                    size={20}
+                    className="text-gray-400 "
+                  />
                 </div>
                 <input
                   type="text"
                   placeholder="Search articles..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="block w-full rounded-lg border-gray-300 pl-10 pr-4 py-3 focus:border-blue-500 focus:ring-blue-500"
+                  className="block w-full rounded-lg border-gray-300 pl-10 pr-4 py-3 focus:border-blue-500 focus:ring-blue-500 font-battambang"
                 />
               </div>
-
               <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
                 Categories
               </h3>
@@ -117,8 +123,6 @@ const BlogList = ({ data }) => {
               </div>
             </div>
           </aside>
-
-          {/* Right Column: Blog Post List */}
           <main className="lg:col-span-3">
             {filteredPosts.length > 0 ? (
               <div className="space-y-8">

@@ -161,8 +161,8 @@
                         </ul>
                     </div>
                 </li>
-                
-                
+
+
                 <li>
                     <a href="#OurClient" data-bs-toggle="collapse">
                         <i data-feather="user-plus"></i>
@@ -178,6 +178,27 @@
                             <li>
                                 {{-- Use the conventional 'create' route name --}}
                                 <a href="{{ route('client.create') }}" class="tp-link">Add Our's Client</a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+
+
+                <li>
+                    <a href="#Blog" data-bs-toggle="collapse">
+                        <i data-feather="book"></i>
+                        <span> Manage Blog </span>
+                        <span class="menu-arrow"></span>
+                    </a>
+                    <div class="collapse" id="Blog">
+                        <ul class="nav-second-level">
+                            <li>
+                                {{-- Use the correct 'blog.index' route --}}
+                                <a href="{{ route('blog.index') }}" class="tp-link">All Blog Posts</a>
+                            </li>
+                            <li>
+                                {{-- Use the correct 'blog.create' route --}}
+                                <a href="{{ route('blog.create') }}" class="tp-link">Add Blog Post</a>
                             </li>
                         </ul>
                     </div>

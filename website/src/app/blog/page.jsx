@@ -3,18 +3,19 @@ import Menu from "@/components/Header/Menu/Menu";
 import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
-import blogData from "@/data/blog.json";
 import BlogList from "@/components/Blog/BlogList"; // Import the new BlogList component
 
-// Import the data-fetching functions for the header
+// Import the data-fetching functions
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
+import { getBlogData } from "@/lib/data/blogs"; // 1. Import the new blog data function
 
 // Make the component async to allow for data fetching
 const BlogPage = async () => {
-  // Fetch the data for the TopNav and Menu components
+  // Fetch the data for the components
   const liveTopNavData = await getTopNavData();
   const liveMenuData = await getMenuData();
+  const liveBlogData = await getBlogData(); // 2. Fetch the live blog data
 
   return (
     <div className="overflow-x-hidden">
@@ -25,8 +26,8 @@ const BlogPage = async () => {
       </header>
 
       <main className="content">
-        {/* Use the new BlogList component and pass the static blog data */}
-        <BlogList data={blogData} />
+        {/* 3. Pass the live blog data to the BlogList component */}
+        <BlogList data={liveBlogData} />
       </main>
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10" />

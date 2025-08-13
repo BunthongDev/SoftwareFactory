@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\MenuController;
@@ -36,6 +37,13 @@ Route::get('/testimonials', [TestimonialController::class, 'ApiAllTestimonials']
 
 // Our's Client API
 Route::get('/clients', [ClientController::class, 'ApiAllClients']);
+
+// Blog API (This route will provide the public API endpoint that Next.js frontend will use to fetch the blog post data.)
+Route::get('/blogs', [BlogController::class, 'ApiAllBlogs']); // for display all blogs in blog menu
+Route::get('/blogs/{slug}', [BlogController::class, 'ApiShowBlog']); // The route now expects a {slug} parameter instead of {id}
+Route::get('/related-blogs', [BlogController::class, 'ApiRelatedBlogs']); // for related blog on reading page
+Route::get('/latest-blogs', [BlogController::class, 'ApiLatestBlogs']); // latest blog display in homepage
+
 
 
 
