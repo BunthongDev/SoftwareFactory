@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Models\Service;
@@ -102,5 +103,8 @@ Route::middleware('auth')->group(function () {
     // As you can see, it's a much cleaner and more conventional way to define all the routes you need for CRUD (Create, Read, Update, Delete) functionality.
     // Your older method using Route::controller works perfectly fine, but Route::resource is the modern best practice because it's more concise and follows a standard that all Laravel developers recognize.
     Route::resource('client', ClientController::class);
+
+    // This route will handle all the backend CRUD operations for blog posts in the admin dashboard. 
+    Route::resource('blog', BlogController::class);
     
 });
