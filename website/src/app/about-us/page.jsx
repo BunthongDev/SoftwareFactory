@@ -91,7 +91,7 @@ const AboutUsPage = async () => {
               <h2 className="text-6xl font-bold text-gray-900">
                 {page_content.journey_title}
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-600 xxl:text-balance">
                 {page_content.journey_description}
               </p>
             </div>
@@ -110,7 +110,7 @@ const AboutUsPage = async () => {
                       <h3 className="text-xl font-bold text-blue-600">
                         {item.event}
                       </h3>
-                      <p className="text-gray-600 mt-2 text-pretty">
+                      <p className="text-gray-600 mt-2 text-balance">
                         {item.description}
                       </p>
                     </div>
