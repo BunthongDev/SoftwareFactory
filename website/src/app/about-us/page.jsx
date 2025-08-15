@@ -10,13 +10,15 @@ import * as Icon from "@phosphor-icons/react/dist/ssr";
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getAboutUsData } from "@/lib/data/about-us"; // 1. Import the new function
+import { getFooterData } from "@/lib/data/footer";
 
 const AboutUsPage = async () => {
   // 2. Fetch all the data for the page in parallel
-  const [liveTopNavData, liveMenuData, aboutUsData] = await Promise.all([
+  const [liveTopNavData, liveMenuData, aboutUsData, liveFooterData] = await Promise.all([
     getTopNavData(),
     getMenuData(),
     getAboutUsData(),
+    getFooterData(),
   ]);
 
   // Destructure the data for easier use
@@ -183,7 +185,7 @@ const AboutUsPage = async () => {
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10" />
       <footer id="footer">
-        <Footer />
+        <Footer data={liveFooterData}/>
       </footer>
     </div>
   );

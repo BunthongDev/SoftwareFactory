@@ -9,6 +9,8 @@ import BlogList from "@/components/Blog/BlogList"; // Import the new BlogList co
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getBlogData } from "@/lib/data/blogs"; // 1. Import the new blog data function
+import { getFooterData } from "@/lib/data/footer";
+
 
 // Make the component async to allow for data fetching
 const BlogPage = async () => {
@@ -16,7 +18,8 @@ const BlogPage = async () => {
   const liveTopNavData = await getTopNavData();
   const liveMenuData = await getMenuData();
   const liveBlogData = await getBlogData(); // 2. Fetch the live blog data
-
+  const liveFooterData = await getFooterData();
+  
   return (
     <div className="overflow-x-hidden">
       <header id="header">
@@ -32,7 +35,7 @@ const BlogPage = async () => {
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10" />
       <footer id="footer">
-        <Footer />
+        <Footer data={liveFooterData} />
       </footer>
     </div>
   );

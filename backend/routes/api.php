@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\Backend\SliderController;
@@ -48,3 +49,5 @@ Route::get('/latest-blogs', [BlogController::class, 'ApiLatestBlogs']); // lates
 // About Us API route
 Route::get('/about-us', [AboutUsController::class, 'ApiAboutUsData']);
 
+// For footer API endpoint
+Route::get('/footer', [FooterController::class, 'ApiFooterData']);

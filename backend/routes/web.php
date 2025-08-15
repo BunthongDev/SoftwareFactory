@@ -10,6 +10,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Models\Service;
@@ -113,4 +114,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/about-us/edit', [AboutUsController::class, 'edit'])->name('about-us.edit');
     // Route to handle the form submission and update the page
     Route::post('/about-us/update', [AboutUsController::class, 'update'])->name('about-us.update');
+
+
+    // Route to show the edit form for the footer
+    Route::get('/footer/edit', [FooterController::class, 'edit'])->name('footer.edit');
+    // Route to handle the form submission and update the footer
+    Route::post('/footer/update', [FooterController::class, 'update'])->name('footer.update');
 });
