@@ -1,3 +1,4 @@
+// Component UI
 import TopNav from "../components/Header/TopNav/TopNav";
 import Menu from "@/components/Header/Menu/Menu";
 import Slider from "@/components/Slider/slider";
@@ -17,7 +18,8 @@ import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getTestimonialData } from "@/lib/data/testimonials";
 import { getClientData } from "@/lib/data/ourclients";
-import { getLatestBlogData } from "@/lib/data/latest-blogs"; // 1. Import the new function
+import { getLatestBlogData } from "@/lib/data/latest-blogs";
+import { getFooterData } from "@/lib/data/footer"; 
 
 export default async function Home() {
   // Fetch data for all components
@@ -29,8 +31,11 @@ export default async function Home() {
     liveMenuData,
     liveTestimonialData,
     liveClientData,
-    liveLatestBlogData, // 2. Add a variable for the latest blog data
+    liveLatestBlogData,
+    liveFooterData, 
   ] = await Promise.all([
+    
+    // Call new function
     getServices(),
     getSliders(),
     getCaseStudies(),
@@ -38,7 +43,8 @@ export default async function Home() {
     getMenuData(),
     getTestimonialData(),
     getClientData(),
-    getLatestBlogData(), // 3. Call the new function
+    getLatestBlogData(),
+    getFooterData(), 
   ]);
 
   return (
@@ -54,12 +60,11 @@ export default async function Home() {
         <CaseStudy data={liveCaseStudyData} />
         <Testimonial testimonialData={liveTestimonialData} />
         <OurClient clientData={liveClientData} />
-        {/* 4. Pass the live data to the Blog component */}
         <Blog data={liveLatestBlogData} />
       </main>
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10 " />
-      <Footer id="footer" />
+      <Footer data={liveFooterData} />
     </div>
   );
 }

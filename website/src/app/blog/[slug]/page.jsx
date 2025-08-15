@@ -10,6 +10,7 @@ import Link from "next/link";
 // Import the data-fetching functions for the header
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
+import { getFooterData } from "@/lib/data/footer";
 
 // --- UPDATED FUNCTIONS TO FETCH LIVE DATA ---
 
@@ -25,6 +26,8 @@ async function getPostBySlug(slug) {
     console.error("Failed to fetch post by slug:", error);
     return null;
   }
+  
+
 }
 
 // This function finds related posts from the API
@@ -76,10 +79,11 @@ const BlogPostPage = async ({ params }) => {
   }
 
   // Now, fetch the rest of the data in parallel
-  const [liveTopNavData, liveMenuData, relatedPosts] = await Promise.all([
+  const [liveTopNavData, liveMenuData, relatedPosts, liveFooterData] = await Promise.all([
     getTopNavData(),
     getMenuData(),
     getRelatedPosts(post.id, post.category),
+    getFooterData(),
   ]);
 
   const avatarSrc =
@@ -160,7 +164,7 @@ const BlogPostPage = async ({ params }) => {
 
       <Partner className="lg:mt-[100px] sm:mt-16 mt-10" />
       <footer id="footer">
-        <Footer />
+        <Footer data={liveFooterData} />
       </footer>
     </div>
   );
