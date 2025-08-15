@@ -204,6 +204,14 @@
                     </div>
                 </li>
 
+                {{-- Manage About Us Menu --}}
+                <li>
+                    <a href="{{ route('about-us.edit') }}" class="tp-link">
+                        <i data-feather="target"></i>
+                        <span> Manage About Us </span>
+                    </a>
+                </li>
+
 
 
                 <li class="menu-title mt-2">General</li>

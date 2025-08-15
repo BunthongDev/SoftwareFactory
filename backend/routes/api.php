@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
@@ -44,6 +45,6 @@ Route::get('/blogs/{slug}', [BlogController::class, 'ApiShowBlog']); // The rout
 Route::get('/related-blogs', [BlogController::class, 'ApiRelatedBlogs']); // for related blog on reading page
 Route::get('/latest-blogs', [BlogController::class, 'ApiLatestBlogs']); // latest blog display in homepage
 
-
-
+// About Us API route
+Route::get('/about-us', [AboutUsController::class, 'ApiAboutUsData']);
 

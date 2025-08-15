@@ -6,79 +6,21 @@ import React from "react";
 import Image from "next/image";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
-// Import the data-fetching functions for the header
+// Import the data-fetching functions
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
-
-// Mock data for team members - now with social links
-const teamMembers = [
-  {
-    id: 1,
-    name: "John Doe",
-    role: "Co-Founder & CEO",
-    avatar: "/images/member/328x350.png",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      facebook: "#",
-    },
-  },
-  {
-    id: 2,
-    name: "Jane Smith",
-    role: "Co-Founder & CTO",
-    avatar: "/images/member/484x512.png",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      facebook: "#",
-    },
-  },
-  {
-    id: 3,
-    name: "Peter Jones",
-    role: "Lead Designer",
-    avatar: "/images/member/328x350.png",
-    socials: {
-      linkedin: "#",
-      twitter: "#",
-      facebook: "#",
-    },
-  },
-];
-
-// Mock data for the company timeline - UNCHANGED
-const timelineEvents = [
-  {
-    year: "2020",
-    event: "Company Founded",
-    description:
-      "Our journey began with a small team and a big idea to revolutionize the industry.",
-  },
-  {
-    year: "2022",
-    event: "First Major Product Launch",
-    description:
-      "We launched our flagship product, receiving critical acclaim and a strong user base.",
-  },
-  {
-    year: "2024",
-    event: "Expanded to International Markets",
-    description:
-      "Our services went global, reaching new customers and partners across the world.",
-  },
-  {
-    year: "Present",
-    event: "Continuing to Innovate",
-    description:
-      "We remain committed to pushing boundaries and delivering excellence.",
-  },
-];
+import { getAboutUsData } from "@/lib/data/about-us"; // 1. Import the new function
 
 const AboutUsPage = async () => {
-  // Fetch the data for the TopNav and Menu components
-  const liveTopNavData = await getTopNavData();
-  const liveMenuData = await getMenuData();
+  // 2. Fetch all the data for the page in parallel
+  const [liveTopNavData, liveMenuData, aboutUsData] = await Promise.all([
+    getTopNavData(),
+    getMenuData(),
+    getAboutUsData(),
+  ]);
+
+  // Destructure the data for easier use
+  const { page_content, team_members, timeline_events } = aboutUsData;
 
   return (
     <div className="overflow-x-hidden">
@@ -88,29 +30,33 @@ const AboutUsPage = async () => {
       </header>
 
       <main className="content">
-        {/* --- UPDATED Hero Section --- */}
+        {/* --- Hero Section  --- */}
         <section className="bg-white">
           <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center py-24 sm:py-32">
             {/* Left Column: Text Content */}
             <div className="text-center lg:text-left">
               <h1 className="text-6xl font-bold tracking-tight text-gray-900">
-                About Anajak Software
+                {page_content.hero_title}
               </h1>
               <p className="mt-6 text-lg sm:text-xl max-w-2xl mx-auto lg:mx-0 text-gray-600">
-                We are a passionate team of developers, designers, and
-                strategists dedicated to building exceptional digital products
-                that drive growth and innovation for our clients.
+                {page_content.hero_description}
               </p>
               <div className="mt-10 flex flex-col sm:flex-row gap-16 justify-center lg:justify-start">
                 <div>
-                  <div className="text-8xl font-bold text-blue-600">150+</div>
+                  <div className="text-8xl font-bold text-blue-600">
+                    {page_content.stat1_number}
+                  </div>
                   <div className="text-gray-500 mt-1 text-lg">
-                    Projects Completed
+                    {page_content.stat1_label}
                   </div>
                 </div>
                 <div>
-                  <div className="text-8xl font-bold text-blue-600">99%</div>
-                  <div className="text-gray-500 mt-1 text-lg">Happy Client</div>
+                  <div className="text-8xl font-bold text-blue-600">
+                    {page_content.stat2_number}
+                  </div>
+                  <div className="text-gray-500 mt-1 text-lg">
+                    {page_content.stat2_label}
+                  </div>
                 </div>
               </div>
             </div>
@@ -118,7 +64,7 @@ const AboutUsPage = async () => {
             <div className="relative h-96 lg:h-[500px] w-full order-first lg:order-last">
               <div className="absolute top-0 left-0 w-2/3 h-2/3 rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/gateway1.webp"
+                  src={page_content.hero_image1}
                   alt="Team working"
                   fill
                   className="object-cover"
@@ -126,7 +72,7 @@ const AboutUsPage = async () => {
               </div>
               <div className="absolute bottom-0 right-0 w-1/2 h-1/2 rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
-                  src="/images/ads.webp"
+                  src={page_content.hero_image2}
                   alt="Office environment"
                   fill
                   className="object-cover"
@@ -136,18 +82,20 @@ const AboutUsPage = async () => {
           </div>
         </section>
 
-        {/* --- UNCHANGED Our Story / Timeline Section --- */}
+        {/* --- Our Story / Timeline Section  --- */}
         <section className="py-24 sm:py-32 bg-slate-50">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
-              <h2 className="text-6xl font-bold text-gray-900">Our Journey</h2>
+              <h2 className="text-6xl font-bold text-gray-900">
+                {page_content.journey_title}
+              </h2>
               <p className="mt-4 text-lg text-gray-600">
-                A brief history of our milestones and achievements.
+                {page_content.journey_description}
               </p>
             </div>
             <div className="relative max-w-4xl mx-auto">
               <div className="absolute left-1/2 w-0.5 h-full bg-gray-200 -translate-x-1/2"></div>
-              {timelineEvents.map((item, index) => (
+              {timeline_events.map((item, index) => (
                 <div key={index} className="relative flex items-center mb-12">
                   <div
                     className={`w-1/2 ${
@@ -174,19 +122,19 @@ const AboutUsPage = async () => {
           </div>
         </section>
 
-        {/* --- UNCHANGED Team Section --- */}
+        {/* --- Team Section --- */}
         <section className="bg-white py-24 sm:py-32">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-6xl font-bold text-gray-900">
-                Meet Our Team
+                {page_content.team_title}
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                The talented individuals behind our success.
+                {page_content.team_description}
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-              {teamMembers.map((member) => (
+              {team_members.map((member) => (
                 <div key={member.id} className="text-center group">
                   <div className="relative h-80 w-full mx-auto mb-4 rounded-2xl overflow-hidden">
                     <Image
@@ -197,20 +145,25 @@ const AboutUsPage = async () => {
                     />
                     <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-50 transition-all duration-300 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100">
                       <a
-                        href={member.socials.linkedin}
+                        href={member.socials.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-white hover:text-blue-400"
                       >
                         <Icon.FacebookLogoIcon size={32} />
                       </a>
-
                       <a
                         href={member.socials.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-white hover:text-blue-400"
                       >
                         <Icon.LinkedinLogoIcon size={32} />
                       </a>
                       <a
                         href={member.socials.twitter}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="text-white hover:text-blue-400"
                       >
                         <Icon.TwitterLogoIcon size={32} />

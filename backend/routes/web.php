@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\ClientController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\TopNavbarController;
@@ -41,13 +42,13 @@ Route::middleware('auth')->group(function () {
     // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 
 
 // Slider Routes
 Route::middleware('auth')->group(function () {
     // SliderController routes
-    Route::controller(SliderController::class)->group(function (){
+    Route::controller(SliderController::class)->group(function () {
         Route::get('/all/slider', 'AllSlider')->name('all.slider'); // This route displays all sliders
         Route::get('/add/slider', 'AddSlider')->name('add.slider'); // this route shows the add slider form
         Route::post('/store/slider', 'StoreSlider')->name('store.slider'); // this route stores the new slider
@@ -106,5 +107,10 @@ Route::middleware('auth')->group(function () {
 
     // This route will handle all the backend CRUD operations for blog posts in the admin dashboard. 
     Route::resource('blog', BlogController::class);
-    
+
+
+    // Route to show the edit form for the About Us page
+    Route::get('/about-us/edit', [AboutUsController::class, 'edit'])->name('about-us.edit');
+    // Route to handle the form submission and update the page
+    Route::post('/about-us/update', [AboutUsController::class, 'update'])->name('about-us.update');
 });
