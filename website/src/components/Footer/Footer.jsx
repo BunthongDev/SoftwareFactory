@@ -31,11 +31,11 @@ Icon
         <div className="flex flex-col items-center gap-6 text-center">
           <Link href="/" className="">
             <Image
-              width={450}
-              height={150}
+              width={650}
+              height={350}
               className="transition-opacity hover:opacity-100 mt-5"
               src={data.logo}
-              alt="Software Factory Logo"
+              alt="Anajak Software Logo"
               priority
             />
           </Link>

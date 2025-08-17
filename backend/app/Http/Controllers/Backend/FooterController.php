@@ -29,7 +29,7 @@ class FooterController extends Controller
             'slogan' => $footer->slogan,
             'socials' => [
                 'facebook' => $footer->facebook_url,
-                'linkedin' => $footer->linkedin_url,
+                'linkedin' => $footer->linkedin_url,    
                 'telegram' => $footer->telegram_url,
                 'instagram' => $footer->instagram_url,
                 'youtube' => $footer->youtube_url,
