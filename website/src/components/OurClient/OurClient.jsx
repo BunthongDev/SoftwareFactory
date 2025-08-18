@@ -21,15 +21,18 @@ const ClientRow = ({ clients, reverse = false }) => {
           href={client.website_url || "#"} // Use the website_url from the API
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-shrink-0 w-64 mx-4 py-4"
+          // UPDATED: Made the container smaller and responsive
+          className="flex-shrink-0 w-48 sm:w-56 mx-4 py-2"
         >
-          <div className="bg-white rounded-2xl shadow-md h-32 flex items-center justify-center p-6">
+          {/* UPDATED: Adjusted height and padding for a more compact look */}
+          <div className="bg-white rounded-2xl shadow-md h-28  flex items-center justify-center p-4">
             <Image
               src={client.logo} // Use the 'logo' property from the API
               alt={`${client.name} logo`}
               width={158}
               height={48}
-              className="hover:grayscale-0 transition-all duration-300 ease-in-out"
+              // UPDATED: Added object-contain to ensure logos fit nicely
+              className="h-[70px] w-auto object-fill hover:grayscale-0 transition-all duration-300 ease-in-out"
             />
           </div>
         </a>
@@ -67,7 +70,7 @@ const OurClient = ({ clientData }) => {
           }
         }
         .animate-scroll-x {
-          animation: scroll-x 30s linear infinite;
+          animation: scroll-x 40s linear infinite;
         }
         .group:hover .animate-scroll-x {
           animation-play-state: paused;
@@ -76,13 +79,11 @@ const OurClient = ({ clientData }) => {
       <section id="ourclient" className="bg-slate-100 py-24 sm:py-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2
-              className="text-6xl font-bold tracking-tight text-gray-900 sm:text-6xl"
-            >
+            <h2 className="text-6xl sm:text-6xl font-bold tracking-tight text-gray-900">
               Our Clients 🏅
             </h2>
           </div>
-          <div className="relative group w-full flex flex-col gap-8 overflow-hidden">
+          <div className="relative group w-full flex flex-col gap-8">
             <ClientRow clients={row1} />
             <ClientRow clients={row2} reverse={true} />
           </div>
