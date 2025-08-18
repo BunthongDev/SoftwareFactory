@@ -31,7 +31,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="logo_input" class="form-label">Client Logo</label>
+                                    <label for="logo_input" class="form-label">Client Logo - Recomment to Crop picture</label>
                                     <input type="file" name="logo" class="form-control" id="logo_input">
                                 </div>
                                 
