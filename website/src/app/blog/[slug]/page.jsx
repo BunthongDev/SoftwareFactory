@@ -12,6 +12,11 @@ import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
 
+// Meta Data
+export const metadata = {
+  title: "Read article",
+};
+
 // --- UPDATED FUNCTIONS TO FETCH LIVE DATA ---
 
 // This function finds a specific blog post by its SLUG from the API

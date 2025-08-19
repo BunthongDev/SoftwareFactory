@@ -5,24 +5,28 @@
         <div id="sidebar-menu">
 
             <div class="logo-box">
-                <a href="/" class="logo logo-light ">
+                <a href="/" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('backend/assets/images/logo-sm-dark.png') }}" alt="logo" height="50">
+                        {{-- Use the dynamic favicon, or a default if not set --}}
+                        <img src="{{ asset($setting->favicon ?? 'backend/assets/images/logo-sm-dark.png') }}"
+                            alt="logo" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('backend/assets/images/logo-dark-mode.png') }}" alt="logo"
-                            height="50">
+                        {{-- Use the dynamic logo, or a default if not set --}}
+                        <img src="{{ asset($setting->logo ?? 'backend/assets/images/logo-dark-mode.png') }}"
+                            alt="logo" height="50">
                     </span>
                 </a>
-                <a href="/" class="logo logo-dark ">
-                    <span
-                        class="logo-sm>
-                                    <img src="{{ asset('backend/assets/images/logo-sm-light-mode.png') }}"
-                        alt="logo" height="50">
+                <a href="/" class="logo logo-dark">
+                    <span class="logo-sm">
+                        {{-- Use the dynamic favicon, or a default if not set --}}
+                        <img src="{{ asset($setting->favicon ?? 'backend/assets/images/logo-sm-light-mode.png') }}"
+                            alt="logo" height="30">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('backend/assets/images/logo-light-mode.png') }}" alt="logo"
-                            height="50">
+                        {{-- Use the dynamic logo, or a default if not set --}}
+                        <img src="{{ asset($setting->logo ?? 'backend/assets/images/logo-light-mode.png') }}"
+                            alt="logo" height="50">
                     </span>
                 </a>
             </div>
@@ -49,6 +53,7 @@
 
                 <li class="menu-title">Pages</li>
 
+                {{-- Top Navbar Management --}}
                 <li>
                     <a href="#topNavbar" data-bs-toggle="collapse">
                         <i data-feather="link"></i>
@@ -66,7 +71,7 @@
                     </div>
                 </li>
 
-
+                {{-- Menu Management --}}
                 <li>
                     <a href="#menu" data-bs-toggle="collapse">
                         <i data-feather="menu"></i>
@@ -78,13 +83,13 @@
                             <li>
                                 <a href="{{ route('edit.menu.settings') }}" class="tp-link">Menu Settings</a>
                             </li>
-
-
                         </ul>
                     </div>
                 </li>
 
 
+
+                {{-- Slider Management --}}
                 <li>
                     <a href="#sliders" data-bs-toggle="collapse">
                         <i data-feather="sliders"></i>
@@ -104,6 +109,8 @@
                     </div>
                 </li>
 
+
+                {{-- Services Management --}}
                 <li>
                     <a href="#services" data-bs-toggle="collapse">
                         <i data-feather="layers"></i>
@@ -123,6 +130,8 @@
                     </div>
                 </li>
 
+
+                {{-- Case Studies Management --}}
                 <li>
                     <a href="#caseStudy" data-bs-toggle="collapse">
                         <i data-feather="award"></i>
@@ -142,6 +151,7 @@
                     </div>
                 </li>
 
+                {{-- Testimonial Management --}}
                 <li>
                     <a href="#Testimonial" data-bs-toggle="collapse">
                         <i data-feather="users"></i>
@@ -163,6 +173,7 @@
                 </li>
 
 
+                {{-- Our Client management --}}
                 <li>
                     <a href="#OurClient" data-bs-toggle="collapse">
                         <i data-feather="user-plus"></i>
@@ -184,6 +195,8 @@
                 </li>
 
 
+
+                {{-- Blog post management --}}
                 <li>
                     <a href="#Blog" data-bs-toggle="collapse">
                         <i data-feather="book"></i>
@@ -204,14 +217,7 @@
                     </div>
                 </li>
 
-                {{-- Manage About Us Menu --}}
-                <li>
-                    <a href="{{ route('about-us.edit') }}" class="tp-link">
-                        <i data-feather="target"></i>
-                        <span> Manage About Us </span>
-                    </a>
-                </li>
-                
+
                 {{-- Footer Management --}}
                 <li>
                     <a href="{{ route('footer.edit') }}" class="tp-link">
@@ -219,8 +225,15 @@
                         <span> Manage Footer </span>
                     </a>
                 </li>
-                
-                
+
+                {{-- Manage About Us Menu --}}
+                <li>
+                    <a href="{{ route('about-us.edit') }}" class="tp-link">
+                        <i data-feather="target"></i>
+                        <span> Manage About Us </span>
+                    </a>
+                </li>
+
                 {{-- Contact Us Management --}}
                 <li>
                     <a href="{{ route('contact-us.edit') }}" class="tp-link">
@@ -233,42 +246,20 @@
 
                 <li class="menu-title mt-2">General</li>
 
+                {{-- Settings Management --}}
                 <li>
-                    <a href="#sidebarBaseui" data-bs-toggle="collapse">
-                        <i data-feather="package"></i>
-                        <span> Components </span>
-                        <span class="menu-arrow"></span>
+                    {{-- This is a direct link to the edit page --}}
+                    <a href="{{ route('setting.edit') }}" class="tp-link">
+                        <i data-feather="settings"></i>
+                        <span> Settings </span>
                     </a>
-                    <div class="collapse" id="sidebarBaseui">
-                        <ul class="nav-second-level">
-                            <li>
-                                <a href="ui-accordions.html" class="tp-link">Accordions</a>
-                            </li>
-                            <li>
-                                <a href="ui-alerts.html" class="tp-link">Alerts</a>
-                            </li>
-
-                        </ul>
-                    </div>
                 </li>
 
 
-               
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
 
                 <li>
                     <a href="#sidebarMaps" data-bs-toggle="collapse">

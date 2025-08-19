@@ -12,6 +12,12 @@ import { getMenuData } from "@/lib/data/menu";
 import { getAboutUsData } from "@/lib/data/about-us"; // 1. Import the new function
 import { getFooterData } from "@/lib/data/footer";
 
+// Metadata
+export const metadata = {
+  title: "About Us",
+};
+
+
 const AboutUsPage = async () => {
   // 2. Fetch all the data for the page in parallel
   const [liveTopNavData, liveMenuData, aboutUsData, liveFooterData] = await Promise.all([

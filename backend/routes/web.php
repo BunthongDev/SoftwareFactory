@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FooterController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Models\Service;
@@ -123,7 +124,12 @@ Route::middleware('auth')->group(function () {
     
     // Route to show the edit form for the Contact Us page
     Route::get('/contact-us/edit', [ContactController::class, 'edit'])->name('contact-us.edit');
-
     // Route to handle the form submission and update the page
     Route::post('/contact-us/update', [ContactController::class, 'update'])->name('contact-us.update');
+
+
+    // Route to show the edit form for the site settings
+    Route::get('/setting/edit', [SettingController::class, 'edit'])->name('setting.edit');
+    // Route to handle the form submission and update the settings
+    Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
 });

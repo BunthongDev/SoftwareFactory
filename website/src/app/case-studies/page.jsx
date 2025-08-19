@@ -15,6 +15,7 @@ import { getMenuData } from "@/lib/data/menu";
 import { getCaseStudies } from "@/lib/data/casestudies";
 import { getFooterData } from "@/lib/data/footer"; // 1. Import the footer data function
 
+
 // A reusable card component for a single case study
 const CaseStudyCard = ({ study }) => {
   return (

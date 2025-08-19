@@ -12,6 +12,11 @@ import { getBlogData } from "@/lib/data/blogs"; // 1. Import the new blog data f
 import { getFooterData } from "@/lib/data/footer";
 
 
+// Meta Data
+export const metadata = {
+  title: "Blog",
+};
+
 // Make the component async to allow for data fetching
 const BlogPage = async () => {
   // Fetch the data for the components

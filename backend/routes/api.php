@@ -8,6 +8,7 @@ use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ServiceController;
+use App\Http\Controllers\Backend\SettingController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\TestimonialController;
 use App\Http\Controllers\Backend\TopNavbarController;
@@ -55,3 +56,6 @@ Route::get('/footer', [FooterController::class, 'ApiFooterData']);
 
 // Contact us API endpoint
 Route::get('/contact-us', [ContactController::class, 'ApiContactUsData']);
+
+// Settings API endpoint
+Route::get('/settings', [SettingController::class, 'ApiSiteSettings']);

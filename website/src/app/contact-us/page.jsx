@@ -12,6 +12,12 @@ import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
 import { getContactUsData } from "@/lib/data/contact-us"; // 1. Import the new function
 
+
+//Metadata
+export const metadata = {
+  title: "Case Study",
+};
+
 // A reusable component for the contact link cards
 const ContactLinkCard = ({ link }) => {
     // Dynamically select the correct icon based on the icon_class from the database
