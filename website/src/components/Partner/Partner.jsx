@@ -15,7 +15,7 @@ const Partner = () => {
           href="/contact-us"
           className="button-main flex-shrink-0 rounded-full bg-white px-9 py-3 text-button hover:bg-black hover:text-white max-lg:mt-6"
         >
-          Get My Free Quote
+          Contact Us Now
         </Link>
       </div>
     </div>
