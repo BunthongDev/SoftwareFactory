@@ -25,7 +25,7 @@
                             <div class="card-body">
                                 <!-- Logo Upload -->
                                 <div class="mb-3">
-                                    <label for="logo_path" class="form-label">Menu Logo (480x200px)</label>
+                                    <label for="logo_path" class="form-label">Menu Logo (500x200px)</label>
                                     <input class="form-control" type="file" id="logo_path" name="logo_path">
                                 </div>
                                 <div class="mb-3 text-center">

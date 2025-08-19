@@ -67,10 +67,10 @@ class MenuController extends Controller
             // Read the image, resize it, and save
             $img = $manager->read($image->getPathname());
 
-            // Resize the image to a width of 480px and constrain aspect ratio (auto height)
-            $img->resize(480, 200, function ($constraint) {
-                $constraint->aspectRatio();
-            });
+            // Resize the image to a width of 500px and constrain aspect ratio (auto height)
+            // $img->resize(500, 200, function ($constraint) {
+            //     $constraint->aspectRatio();
+            // });
 
             $img->save(public_path($save_path));
 

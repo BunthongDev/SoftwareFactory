@@ -41,7 +41,7 @@ const Menu = ({ data }) => {
               height={200}
               alt="logo"
               priority={true}
-              className="w-[170px] h-auto max-sm:w-[132px]"
+              className="w-[175px] h-auto max-sm:w-[132px]"
             />
           </Link>
           
