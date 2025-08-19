@@ -4,6 +4,7 @@ use App\Http\Controllers\Backend\AboutUsController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
+use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FooterController;
 use App\Http\Controllers\Backend\MenuController;
 use App\Http\Controllers\Backend\ServiceController;
@@ -51,3 +52,6 @@ Route::get('/about-us', [AboutUsController::class, 'ApiAboutUsData']);
 
 // For footer API endpoint
 Route::get('/footer', [FooterController::class, 'ApiFooterData']);
+
+// Contact us API endpoint
+Route::get('/contact-us', [ContactController::class, 'ApiContactUsData']);

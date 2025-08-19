@@ -219,6 +219,15 @@
                         <span> Manage Footer </span>
                     </a>
                 </li>
+                
+                
+                {{-- Contact Us Management --}}
+                <li>
+                    <a href="{{ route('contact-us.edit') }}" class="tp-link">
+                        <i data-feather="phone-incoming"></i>
+                        <span> Manage Contact Us </span>
+                    </a>
+                </li>
 
 
 
