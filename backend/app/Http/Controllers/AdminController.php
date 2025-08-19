@@ -8,9 +8,33 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\User;
 use App\Mail\VerificationCodeMail;
 
+// Import the models needed for the dashboard counts
+use App\Models\Blog;
+use App\Models\Service;
+use App\Models\CaseStudy;
+use App\Models\TeamMember;
+
 
 class AdminController extends Controller
 {
+    // This function fetches data for the main dashboard
+    public function AdminDashboard()
+    {
+        $totalBlogs = Blog::count();
+        $totalServices = Service::count();
+        $totalCaseStudies = CaseStudy::count();
+        $totalTeamMembers = TeamMember::count();
+        $latestBlogs = Blog::latest()->take(10)->get();
+
+        return view('admin.index', compact(
+            'totalBlogs',
+            'totalServices',
+            'totalCaseStudies',
+            'totalTeamMembers',
+            'latestBlogs'
+        ));
+    }
+    
     // This function handles the admin logout functionality
     public function AdminLogout(Request $request){
         
@@ -70,8 +94,4 @@ class AdminController extends Controller
         return back()->withErrors(['code' => "Invalid verification code."]);
         
     }
-    
-    
-    
-    
 }
