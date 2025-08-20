@@ -51,7 +51,8 @@ const Slider = ({ data }) => {
                       src={slider.image}
                       width={1124}
                       height={750}
-                      alt={slider.heading}
+                      // alt={slider.heading}
+                      alt={`slider image`}
                       priority={true}
                       className="w-full h-full object-cover"
                     />
