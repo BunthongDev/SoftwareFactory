@@ -2,6 +2,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Battambang } from "next/font/google";
 import "@/styles/style.scss"; // Global style
 
+import TelegramFloat from '@/components/TelegramChat/TelegramFloat'; 
+
 // Import the Phosphor Icons stylesheet
 import "@phosphor-icons/web/duotone/style.css";
 
@@ -52,6 +54,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} ${battambang.variable} antialiased`}
       >
         {children}
+
+        {/* Telegram chat */}
+        <TelegramFloat />
       </body>
     </html>
   );
