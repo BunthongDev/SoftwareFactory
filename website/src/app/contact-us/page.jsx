@@ -30,8 +30,8 @@ const ContactLinkCard = ({ link }) => {
             rel="noopener noreferrer"
             className={`bg-slate-50 p-8 rounded-2xl border text-center group ${link.hoverClass} hover:text-white transition-all duration-300 w-full sm:w-64 flex flex-col items-center justify-center h-48`}
         >
-            <div className="flex justify-center text-blue-600 group-hover:text-white transition-colors duration-300">
-                <IconComponent size={32} />
+            <div className="flex justify-center text-blue-600 group-hover:text-white transition-colors duration-300 font-bold">
+                <IconComponent size={42} />
             </div>
             <h3 className="mt-4 text-xl font-bold text-gray-900 group-hover:text-white transition-colors duration-300">
                 {link.title}
