@@ -9,6 +9,7 @@ use App\Http\Controllers\Backend\ServiceController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Backend\AdController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\ContactController;
 use App\Http\Controllers\Backend\FooterController;
@@ -78,7 +79,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/delete/case-study/{id}', 'DeleteCaseStudy')->name('delete.casestudy'); // this route deletes the case study
     });
 
-    // TopNavbarController routes, this section handles the top navbar management routes 
+    // TopNavbarController routes, this section handles the top navbar management routes
     Route::controller(TopNavbarController::class)->group(function () {
         // Route to display the settings page
         Route::get('/top-navbar/settings', 'EditTopNav')->name('edit.topnav');
@@ -100,13 +101,13 @@ Route::middleware('auth')->group(function () {
     // TestimonialController routes using the resourceful convention
     Route::resource('testimonial', TestimonialController::class)->middleware(['auth']);
 
-    // ClientController routes using the resourceful convention 
+    // ClientController routes using the resourceful convention
     //(it's a powerful shortcut. It automatically creates a full set of common routes needed for a "resource" like a client, a blog post, or a product.)
     // As you can see, it's a much cleaner and more conventional way to define all the routes you need for CRUD (Create, Read, Update, Delete) functionality.
     // Your older method using Route::controller works perfectly fine, but Route::resource is the modern best practice because it's more concise and follows a standard that all Laravel developers recognize.
     Route::resource('client', ClientController::class);
 
-    // This route will handle all the backend CRUD operations for blog posts in the admin dashboard. 
+    // This route will handle all the backend CRUD operations for blog posts in the admin dashboard.
     Route::resource('blog', BlogController::class);
 
 
@@ -121,7 +122,7 @@ Route::middleware('auth')->group(function () {
     // Route to handle the form submission and update the footer
     Route::post('/footer/update', [FooterController::class, 'update'])->name('footer.update');
 
-    
+
     // Route to show the edit form for the Contact Us page
     Route::get('/contact-us/edit', [ContactController::class, 'edit'])->name('contact-us.edit');
     // Route to handle the form submission and update the page
@@ -132,4 +133,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/setting/edit', [SettingController::class, 'edit'])->name('setting.edit');
     // Route to handle the form submission and update the settings
     Route::post('/setting/update', [SettingController::class, 'update'])->name('setting.update');
+
+
+    // Ad Management Routes
+    Route::prefix('ads')->name('admin.ads.')->group(function () {
+        Route::get('/', [AdController::class, 'manage'])->name('manage');
+        Route::get('/create', [AdController::class, 'create'])->name('create');
+        Route::post('/store', [AdController::class, 'store'])->name('store');
+        Route::get('/edit/{ad}', [AdController::class, 'edit'])->name('edit');
+        Route::put('/update/{ad}', [AdController::class, 'update'])->name('update');
+        Route::delete('/destroy/{ad}', [AdController::class, 'destroy'])->name('destroy');
+    });
+
 });

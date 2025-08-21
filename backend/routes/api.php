@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Backend\AboutUsController;
+use App\Http\Controllers\Backend\AdController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\CaseStudyController;
 use App\Http\Controllers\Backend\ClientController;
@@ -59,3 +60,6 @@ Route::get('/contact-us', [ContactController::class, 'ApiContactUsData']);
 
 // Settings API endpoint
 Route::get('/settings', [SettingController::class, 'ApiSiteSettings']);
+
+// Blog Ads API endpoint
+Route::get('/ads', [AdController::class, 'index']);
