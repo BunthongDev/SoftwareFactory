@@ -7,19 +7,24 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
+// --- START: NEW IMPORTS FOR ADS ---
+import AdBanner from "@/components/Ads/AdBanner";
+import PopupAd from "@/components/Ads/PopupAd";
+import { getAdsData } from "@/lib/data/ads";
+// --- END: NEW IMPORTS FOR ADS ---
+
 // Import the data-fetching functions for the header
 import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
+import StickyFooterAd from "@/components/Ads/StickyFooterAd";
 
 // Meta Data
 export const metadata = {
   title: "Read article",
 };
 
-// --- UPDATED FUNCTIONS TO FETCH LIVE DATA ---
-
-// This function finds a specific blog post by its SLUG from the API
+// --- FUNCTIONS TO FETCH LIVE DATA ---
 async function getPostBySlug(slug) {
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${slug}`;
   try {
@@ -31,26 +36,55 @@ async function getPostBySlug(slug) {
     console.error("Failed to fetch post by slug:", error);
     return null;
   }
-  
-
 }
 
-// This function finds related posts from the API
 async function getRelatedPosts(postId, category) {
-    const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/related-blogs?postId=${postId}&category=${category}`;
-    try {
-        const res = await fetch(apiUrl, { cache: "no-store" });
-        if (!res.ok) return [];
-        const jsonResponse = await res.json();
-        return jsonResponse.data;
-    } catch (error) {
-        console.error("Failed to fetch related posts:", error);
-        return [];
-    }
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/related-blogs?postId=${postId}&category=${category}`;
+  try {
+    const res = await fetch(apiUrl, { cache: "no-store" });
+    if (!res.ok) return [];
+    const jsonResponse = await res.json();
+    return jsonResponse.data;
+  } catch (error) {
+    console.error("Failed to fetch related posts:", error);
+    return [];
+  }
 }
 
+// --- COMPONENT TO HANDLE IN-CONTENT ADS ---
+const PostContent = ({ htmlContent, ads }) => {
+  if (!ads || ads.length === 0) {
+    return (
+      <div
+        className="prose prose-lg max-w-none text-black font-battambang"
+        dangerouslySetInnerHTML={{ __html: htmlContent }}
+      />
+    );
+  }
 
-// A new component for the related post cards
+  const contentParts = htmlContent.split("</p>");
+  const adPlacementIndex = 2;
+
+  return (
+    <div className="prose prose-lg max-w-none text-black font-battambang">
+      {contentParts.map((part, index) => (
+        <React.Fragment key={index}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: part + (index < contentParts.length - 1 ? "</p>" : ""),
+            }}
+          />
+          {index === adPlacementIndex - 1 && (
+            <div className="my-8">
+              <AdBanner ads={ads} />
+            </div>
+          )}
+        </React.Fragment>
+      ))}
+    </div>
+  );
+};
+
 const RelatedPostCard = ({ post }) => {
   return (
     <div className="bg-gray-50 rounded-2xl overflow-hidden group">
@@ -64,7 +98,6 @@ const RelatedPostCard = ({ post }) => {
       </div>
       <div className="p-6">
         <h3 className="font-bold text-lg text-black group-hover:text-blue-600 transition-colors">
-          {/* UPDATED: The link now uses post.slug */}
           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
         <p className="text-sm text-gray-500 mt-2">{post.date}</p>
@@ -73,22 +106,29 @@ const RelatedPostCard = ({ post }) => {
   );
 };
 
-// This is the main page component for a single blog post
-const BlogPostPage = async ({ params }) => {
-  // Fetch the main post first, using the slug from params
-  const post = await getPostBySlug(params.slug);
 
-  // If no post is found for the given slug, show a 404 page
+const BlogPostPage = async (props) => {
+  const params = await props.params; 
+  const slug = params.slug;
+
+  const post = await getPostBySlug(slug);
+
   if (!post) {
     notFound();
   }
 
-  // Now, fetch the rest of the data in parallel
-  const [liveTopNavData, liveMenuData, relatedPosts, liveFooterData] = await Promise.all([
+  const [
+    liveTopNavData,
+    liveMenuData,
+    relatedPosts,
+    liveFooterData,
+    liveAdsData,
+  ] = await Promise.all([
     getTopNavData(),
     getMenuData(),
     getRelatedPosts(post.id, post.category),
     getFooterData(),
+    getAdsData(),
   ]);
 
   const avatarSrc =
@@ -130,6 +170,11 @@ const BlogPostPage = async ({ params }) => {
               </div>
             </div>
 
+            {/* --- AD PLACEMENT 1: BELOW TITLE --- */}
+            <div className="my-8">
+              <AdBanner ads={liveAdsData.below_title} />
+            </div>
+
             {/* Main Post Image */}
             <div className="relative h-96 rounded-2xl overflow-hidden mb-12">
               <Image
@@ -140,11 +185,16 @@ const BlogPostPage = async ({ params }) => {
               />
             </div>
 
-            {/* Post Content */}
-            <div
-              className="prose prose-lg max-w-none text-black font-battambang"
-              dangerouslySetInnerHTML={{ __html: post.content }}
+            {/* --- AD PLACEMENT 2: IN CONTENT --- */}
+            <PostContent
+              htmlContent={post.content}
+              ads={liveAdsData.in_content}
             />
+
+            {/* --- AD PLACEMENT 4: END OF ARTICLE --- */}
+            <div className="my-12 border-t pt-8">
+              <AdBanner ads={liveAdsData.end_of_article} />
+            </div>
           </div>
         </div>
       </main>
@@ -171,6 +221,12 @@ const BlogPostPage = async ({ params }) => {
       <footer id="footer">
         <Footer data={liveFooterData} />
       </footer>
+
+      {/* --- AD PLACEMENT 3: STICKY FOOTER --- */}
+      <StickyFooterAd ads={liveAdsData.sticky_footer} />
+
+      {/* --- AD PLACEMENT 5: POPUP --- */}
+      <PopupAd ads={liveAdsData.popup} />
     </div>
   );
 };
