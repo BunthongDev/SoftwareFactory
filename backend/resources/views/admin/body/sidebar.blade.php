@@ -257,6 +257,12 @@
 
 
 
+                <li>
+                    <a href="{{ route('admin.ads.manage') }}" class="tp-link">
+                        <i data-feather="image"></i> {{-- Corrected Icon Code --}}
+                        <span> Ad Banners </span>
+                    </a>
+                </li>
 
 
 
