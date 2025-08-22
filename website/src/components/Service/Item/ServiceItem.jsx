@@ -27,6 +27,7 @@ const motivationalQuotes = [
     "Small steps in the right direction can turn out to be the biggest steps of your life.",
     "Doubt kills more dreams than failure ever will.",
     "Start where you are. Use what you have. Do what you can.",
+    "Anajak Software",
 ];
 
 // A custom hook to apply a box shadow when an item is dragged
