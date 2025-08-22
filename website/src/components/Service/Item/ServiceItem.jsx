@@ -91,7 +91,7 @@ const ServiceItem = ({ item, number, onRemove }) => {
           <button
             onClick={() => onRemove(item.id)}
             onPointerDown={(e) => e.stopPropagation()}
-            className="absolute top-2 right-2 bg-blue-500 text-white rounded-full p-1 hover:bg-red-500 hover:text-white transition-colors z-10"
+            className="absolute top-2 right-2 bg-gray-100 text-gray-700 rounded-full p-1 hover:bg-red-500 hover:text-white transition-colors z-10"
             aria-label="Remove item"
           >
             <XIcon size={10} />
