@@ -1,5 +1,5 @@
 // Component UI
-import TopNav from "../components/Header/TopNav/TopNav";
+// import TopNav from "../components/Header/TopNav/TopNav";
 import Menu from "@/components/Header/Menu/Menu";
 import Slider from "@/components/Slider/slider";
 import Service from "@/components/Service/Service";
@@ -14,7 +14,7 @@ import Partner from "@/components/Partner/Partner";
 import { getServices } from "@/lib/data/services";
 import { getSliders } from "@/lib/data/sliders";
 import { getCaseStudies } from "@/lib/data/casestudies";
-import { getTopNavData } from "@/lib/data/topnav";
+// import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getTestimonialData } from "@/lib/data/testimonials";
 import { getClientData } from "@/lib/data/ourclients";
@@ -27,7 +27,7 @@ export default async function Home() {
     liveServiceData,
     liveSliderData,
     liveCaseStudyData,
-    liveTopNavData,
+    // liveTopNavData,
     liveMenuData,
     liveTestimonialData,
     liveClientData,
@@ -39,7 +39,7 @@ export default async function Home() {
     getServices(),
     getSliders(),
     getCaseStudies(),
-    getTopNavData(),
+    // getTopNavData(),
     getMenuData(),
     getTestimonialData(),
     getClientData(),
@@ -50,7 +50,7 @@ export default async function Home() {
   return (
     <div className="overflow-hidden">
       <header id="header">
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 
