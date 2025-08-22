@@ -49,7 +49,7 @@ export async function generateMetadata() {
 export default function RootLayout({ children }) {
   return (
     // Add the Battambang font variable to the html tag
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${battambang.variable} antialiased`}
       >

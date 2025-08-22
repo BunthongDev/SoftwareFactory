@@ -1,42 +1,55 @@
 "use client";
-import { useInView } from "framer-motion";
-import React, { useRef } from "react";
+import { motion, Reorder, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
 import ServiceItem from "./Item/ServiceItem";
 
 const Service = ({ data }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+  // Create a state to hold the order of service items
+  const [services, setServices] = useState(data);
+
+  // This ensures that if the initial data changes, our state updates
+  useEffect(() => {
+    setServices(data);
+  }, [data]);
+
+  // --- Function to remove a service item ---
+  const handleRemoveService = (idToRemove) => {
+    setServices(currentServices => currentServices.filter(item => item.id !== idToRemove));
+  };
 
   return (
     <div>
-      {/* Main section for the service block  */}
+      {/* Main section for the service block */}
       <section
         id="service"
         className="service-block lg:mt-[100px] sm:mt-16 mt-10"
-        ref={ref}
       >
         <div className="container">
           {/* Heading of the services section */}
-          <h3 className="heading3 text-center">Our Services</h3>
-          {/* Container for the list of service items */}
-          <div
+          <h3 className="heading3 text-center text-[55px]">Our Services</h3>
+          <p className="text-center text-gray-500 mt-2 max-w-2xl mx-auto text-[20px]">
+    This section is interactive! Feel free to drag, reorder, flip, and close the cards to play around 🛝 🃏
+          </p>
+          {/* Use Reorder.Group to manage the reordering logic */}
+          <Reorder.Group
+            axis="x" 
+            values={services}
+            onReorder={setServices}
             className="list-service grid lg:grid-cols-3 sm:grid-cols-2 gap-8 md:mt-10 mt-6 gap-y-10"
-            style={{
-              transform: isInView ? "none" : "translateY(60px)",
-              opacity: isInView ? 1 : 0,
-              // Define the transition properties for a smooth animation effect
-              transition: "all 0.7s cubic-bezier(0.17, 0.55, 0.55,1) 0.3s",
-            }}
           >
-            {
-              // Map through the 'data' array to render each ServiceItem.
-              // FIX 1: Changed slice(0.6) to slice(0, 30) to limit the number of itens dispaly
-              // FIX 2: Changed key={index} to key={item.id}
-              data.slice(0, 30).map((item, index) => (
-                <ServiceItem data={item} key={item.id} number={index} />
-              ))
-            }
-          </div>
+            {/* -- Wrap the list in AnimatePresence for exit animations --- */}
+            <AnimatePresence>
+              {/* slice card from 0 to 30 */}
+              {services.slice(0, 30).map((item, index) => (
+                <ServiceItem
+                  key={item.id}
+                  item={item} 
+                  number={index}
+                  onRemove={handleRemoveService} // Pass the remove function to each item
+                />
+              ))}
+            </AnimatePresence>
+          </Reorder.Group>
         </div>
       </section>
     </div>
