@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-import TopNav from "@/components/Header/TopNav/TopNav";
+// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
 import Image from "next/image";
@@ -20,8 +20,12 @@ export const metadata = {
 
 const AboutUsPage = async () => {
   // 2. Fetch all the data for the page in parallel
-  const [liveTopNavData, liveMenuData, aboutUsData, liveFooterData] = await Promise.all([
-    getTopNavData(),
+  const [
+    // liveTopNavData,
+    liveMenuData, 
+    aboutUsData, 
+    liveFooterData] = await Promise.all([
+    // getTopNavData(),
     getMenuData(),
     getAboutUsData(),
     getFooterData(),
@@ -33,7 +37,7 @@ const AboutUsPage = async () => {
   return (
     <div className="overflow-x-hidden">
       <header id="header">
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 

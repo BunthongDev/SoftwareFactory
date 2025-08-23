@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-import TopNav from "@/components/Header/TopNav/TopNav";
+// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
 import Image from "next/image";
@@ -14,7 +14,7 @@ import { getAdsData } from "@/lib/data/ads";
 // --- END: NEW IMPORTS FOR ADS ---
 
 // Import the data-fetching functions for the header
-import { getTopNavData } from "@/lib/data/topnav";
+// import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
 import StickyFooterAd from "@/components/Ads/StickyFooterAd";
@@ -118,13 +118,13 @@ const BlogPostPage = async (props) => {
   }
 
   const [
-    liveTopNavData,
+    // liveTopNavData,
     liveMenuData,
     relatedPosts,
     liveFooterData,
     liveAdsData,
   ] = await Promise.all([
-    getTopNavData(),
+    // getTopNavData(),
     getMenuData(),
     getRelatedPosts(post.id, post.category),
     getFooterData(),
@@ -139,7 +139,7 @@ const BlogPostPage = async (props) => {
   return (
     <div className="overflow-x-hidden">
       <header id="header">
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 

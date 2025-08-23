@@ -2,7 +2,7 @@
 
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-import TopNav from "@/components/Header/TopNav/TopNav";
+// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 
 // Import the data-fetching functions
-import { getTopNavData } from "@/lib/data/topnav";
+// import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getCaseStudies } from "@/lib/data/casestudies";
 import { getFooterData } from "@/lib/data/footer"; // 1. Import the footer data function
@@ -46,7 +46,7 @@ const CaseStudyCard = ({ study }) => {
 
 const CaseStudiesPage = () => {
   // State to hold the data fetched on the client
-  const [liveTopNavData, setLiveTopNavData] = useState(null);
+  // const [liveTopNavData, setLiveTopNavData] = useState(null);
   const [liveMenuData, setLiveMenuData] = useState(null);
   const [allCaseStudies, setAllCaseStudies] = useState([]);
   const [liveFooterData, setLiveFooterData] = useState(null); // 2. Add state for footer data
@@ -54,13 +54,18 @@ const CaseStudiesPage = () => {
   useEffect(() => {
     // Fetch all data inside a useEffect hook
     const fetchData = async () => {
-      const [navData, menuData, studiesData, footerData] = await Promise.all([ // 3. Fetch footer data
-        getTopNavData(),
+      const [
+        // navData, 
+        menuData,
+        studiesData, 
+        footerData
+      ] = await Promise.all([ // 3. Fetch footer data
+        // getTopNavData(),
         getMenuData(),
         getCaseStudies(),
         getFooterData(),
       ]);
-      setLiveTopNavData(navData);
+      // setLiveTopNavData(navData);
       setLiveMenuData(menuData);
       setAllCaseStudies(studiesData);
       setLiveFooterData(footerData); // 4. Set the footer data state
@@ -71,7 +76,7 @@ const CaseStudiesPage = () => {
   return (
     <div className="overflow-x-hidden">
       <header id="header">
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 

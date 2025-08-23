@@ -1,12 +1,12 @@
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-import TopNav from "@/components/Header/TopNav/TopNav";
+// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
 import BlogList from "@/components/Blog/BlogList"; // Import the new BlogList component
 
 // Import the data-fetching functions
-import { getTopNavData } from "@/lib/data/topnav";
+// import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getBlogData } from "@/lib/data/blogs"; // 1. Import the new blog data function
 import { getFooterData } from "@/lib/data/footer";
@@ -20,7 +20,7 @@ export const metadata = {
 // Make the component async to allow for data fetching
 const BlogPage = async () => {
   // Fetch the data for the components
-  const liveTopNavData = await getTopNavData();
+  // const liveTopNavData = await getTopNavData();
   const liveMenuData = await getMenuData();
   const liveBlogData = await getBlogData(); // 2. Fetch the live blog data
   const liveFooterData = await getFooterData();
@@ -29,7 +29,7 @@ const BlogPage = async () => {
     <div className="overflow-x-hidden">
       <header id="header">
         {/* Pass the fetched data as props */}
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 

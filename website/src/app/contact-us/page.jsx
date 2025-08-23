@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-import TopNav from "@/components/Header/TopNav/TopNav";
+// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
 
 // Import the data-fetching functions
-import { getTopNavData } from "@/lib/data/topnav";
+// import { getTopNavData } from "@/lib/data/topnav";
 import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
 import { getContactUsData } from "@/lib/data/contact-us"; // 1. Import the new function
@@ -46,8 +46,13 @@ const ContactLinkCard = ({ link }) => {
 
 const ContactUsPage = async () => {
   // 2. Fetch all the data for the page in parallel
-  const [liveTopNavData, liveMenuData, liveFooterData, contactUsData] = await Promise.all([
-    getTopNavData(),
+  const [
+    // liveTopNavData,
+    liveMenuData, 
+    liveFooterData, 
+    contactUsData
+  ] = await Promise.all([
+    // getTopNavData(),
     getMenuData(),
     getFooterData(),
     getContactUsData(),
@@ -67,7 +72,7 @@ const ContactUsPage = async () => {
   return (
     <div className="overflow-x-hidden">
       <header id="header">
-        <TopNav data={liveTopNavData} />
+        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 
