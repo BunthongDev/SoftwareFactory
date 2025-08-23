@@ -70,44 +70,45 @@
 
         <!-- Recent Blog Posts Section -->
         <div class="row">
-            <div class="col-xl-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h5 class="card-title mb-0">Latest Blog Posts</h5>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-centered table-nowrap mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>Title</th>
-                                        <th>Category</th>
-                                        <th>Date Published</th>
-                                        <th>Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($latestBlogs as $blog)
-                                    <tr>
-                                        <td>{{ Str::limit($blog->title, 50) }}</td>
-                                        <td>{{ $blog->category }}</td>
-                                        <td>{{ $blog->published_at ? $blog->published_at->format('d M, Y') : 'Draft' }}</td>
-                                        <td>
-                                            <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-primary btn-sm">Edit</a>
-                                        </td>
-                                    </tr>
-                                    @empty
-                                    <tr>
-                                        <td colspan="4" class="text-center">No blog posts found.</td>
-                                    </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Latest Blog Posts</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap mb-0">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date Published</th>
+                                <th>Views</th> <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse ($latestBlogs as $blog)
+                            <tr>
+                                <td>{{ Str::limit($blog->title, 50) }}</td>
+                                <td>{{ $blog->category }}</td>
+                                <td>{{ $blog->published_at ? $blog->published_at->format('d M, Y') : 'Draft' }}</td>
+                                <td>{{ $blog->formatted_view_count }}</td> <td>
+                                    <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                </td>
+                            </tr>
+                            @empty
+                            <tr>
+                                {{-- Updated colspan to 5 to account for the new column --}}
+                                <td colspan="5" class="text-center">No blog posts found.</td>
+                            </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
+</div>
         <!-- End Recent Blog Posts Section -->
 
     </div> <!-- container-fluid -->

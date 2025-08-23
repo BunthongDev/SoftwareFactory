@@ -74,6 +74,21 @@ class BlogController extends Controller
         return BlogResource::collection($blogs);
     }
 
+    // Count view on blog post page
+    public function incrementViewCount($slug)
+    {
+        $blog = Blog::where('slug', $slug)->first();
+
+        if ($blog) {
+            // This is an atomic operation, safe for multiple simultaneous requests.
+            $blog->increment('view_count');
+            return response()->json(['message' => 'View count updated successfully.']);
+        }
+
+        return response()->json(['message' => 'Blog not found'], 404);
+    }
+    
+    
     /**
      * Display all blog posts in the admin dashboard.
      */

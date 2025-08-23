@@ -1,28 +1,46 @@
 import Footer from "@/components/Footer/Footer";
 import Menu from "@/components/Header/Menu/Menu";
-// import TopNav from "@/components/Header/TopNav/TopNav";
 import Partner from "@/components/Partner/Partner";
 import React from "react";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 
-// --- START: NEW IMPORTS FOR ADS ---
+// --- START: Component & Ad Imports ---
 import AdBanner from "@/components/Ads/AdBanner";
 import PopupAd from "@/components/Ads/PopupAd";
-import { getAdsData } from "@/lib/data/ads";
-// --- END: NEW IMPORTS FOR ADS ---
+import StickyFooterAd from "@/components/Ads/StickyFooterAd";
+// --- END: Component & Ad Imports ---
 
-// Import the data-fetching functions for the header
-// import { getTopNavData } from "@/lib/data/topnav";
+// View counting
+import ViewTracker from "@/components/Blog/ViewTracker"; // Import the new ViewTracker component
+import ViewCountDisplay from "@/components/Blog/ViewCountDisplay";
+
+// --- START: Data Fetching Imports ---
+import { getAdsData } from "@/lib/data/ads";
 import { getMenuData } from "@/lib/data/menu";
 import { getFooterData } from "@/lib/data/footer";
-import StickyFooterAd from "@/components/Ads/StickyFooterAd";
+// --- END: Data Fetching Imports ---
 
-// Meta Data
-export const metadata = {
-  title: "Read article",
-};
+
+// Meta Data 
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
+
+  if (!post) {
+    return {
+      title: "Post Not Found",
+    };
+  }
+
+  return {
+    title: post.title,
+    description: post.excerpt,
+  };
+}
+
+
 
 // --- FUNCTIONS TO FETCH LIVE DATA ---
 async function getPostBySlug(slug) {
@@ -118,13 +136,11 @@ const BlogPostPage = async (props) => {
   }
 
   const [
-    // liveTopNavData,
     liveMenuData,
     relatedPosts,
     liveFooterData,
     liveAdsData,
   ] = await Promise.all([
-    // getTopNavData(),
     getMenuData(),
     getRelatedPosts(post.id, post.category),
     getFooterData(),
@@ -138,8 +154,10 @@ const BlogPostPage = async (props) => {
 
   return (
     <div className="overflow-x-hidden">
+      {/* This calls the client component to track the view */}
+      <ViewTracker postId={post.id} postSlug={post.slug} />
+
       <header id="header">
-        {/* <TopNav data={liveTopNavData} /> */}
         <Menu data={liveMenuData} />
       </header>
 
@@ -154,7 +172,8 @@ const BlogPostPage = async (props) => {
               <h1 className="text-2xl md:text-3xl font-bold text-black mb-4 font-battambang leading-8 sm:text-2xl sm:leading-8 md:leading-10">
                 {post.title}
               </h1>
-              <div className="flex items-center justify-center text-md text-gray-500">
+
+              <div className="flex items-center justify-center text-md text-gray-500 flex-wrap">
                 <Image
                   src={avatarSrc}
                   alt={post.author}
@@ -167,6 +186,8 @@ const BlogPostPage = async (props) => {
                 </span>
                 <span className="mx-2">•</span>
                 <span>{post.date}</span>
+                <span className="mx-2">•</span>
+                <ViewCountDisplay viewCount={post.formatted_view_count} />
               </div>
             </div>
 

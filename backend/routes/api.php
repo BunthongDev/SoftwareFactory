@@ -48,6 +48,7 @@ Route::get('/blogs', [BlogController::class, 'ApiAllBlogs']); // for display all
 Route::get('/blogs/{slug}', [BlogController::class, 'ApiShowBlog']); // The route now expects a {slug} parameter instead of {id}
 Route::get('/related-blogs', [BlogController::class, 'ApiRelatedBlogs']); // for related blog on reading page
 Route::get('/latest-blogs', [BlogController::class, 'ApiLatestBlogs']); // latest blog display in homepage
+Route::post('/blogs/{slug}/view', [BlogController::class, 'incrementViewCount']); // for incrementing view count
 
 // About Us API route
 Route::get('/about-us', [AboutUsController::class, 'ApiAboutUsData']);

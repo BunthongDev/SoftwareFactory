@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Number;
 
 class Blog extends Model
 {
@@ -25,6 +26,8 @@ class Blog extends Model
         'author_name',
         'author_avatar',
         'published_at',
+        // add view count (New feature)
+        'view_count',
     ];
 
     /**
@@ -37,4 +40,13 @@ class Blog extends Model
     protected $casts = [
         'published_at' => 'datetime',
     ];
+    
+    /**
+     * Get the formatted view count.
+     * Examples: 999, 1.5K, 10K, 1.2M
+     */
+    public function getFormattedViewCountAttribute(): string
+    {
+        return Number::abbreviate($this->view_count);
+    }
 }
