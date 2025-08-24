@@ -36,7 +36,9 @@ const Menu = ({ data }) => {
         <div className="container flex items-center justify-between h-20">
           <Link className="menu-left-block" href="/">
             <Image
-              src={settings.logo_url || "/images/Software-Factory-Logo.png"}
+              src={
+                settings.logo_url || "/images/AnajakSoftware-page-not-found.png"
+              }
               width={480}
               height={200}
               alt="logo"
@@ -44,7 +46,7 @@ const Menu = ({ data }) => {
               className="w-[175px] h-auto max-sm:w-[132px]"
             />
           </Link>
-          
+
           <div className="menu-center-block h-full">
             <ul className="menu-nav flex items-center gap-1 h-full">
               {menu_items.map((item) => (
@@ -54,7 +56,9 @@ const Menu = ({ data }) => {
                 >
                   <Link
                     className={`nav-link text-title flex items-center gap-1 px-1 py-2 transition-colors duration-200 font-bold ${
-                      isActive(item.link) ? "text-blue-600 font-bold" : "text-gray-700 hover:text-blue-600"
+                      isActive(item.link)
+                        ? "text-blue-600 font-bold"
+                        : "text-gray-700 hover:text-blue-600"
                     }`}
                     href={item.link}
                   >
@@ -105,7 +109,11 @@ const Menu = ({ data }) => {
                       href={item.link}
                       onClick={() => setOpenMenuMobile(false)}
                     >
-                      <span className={`font-bold ${isActive(item.link) ? "text-blue-600" : ""}`}>
+                      <span
+                        className={`font-bold ${
+                          isActive(item.link) ? "text-blue-600" : ""
+                        }`}
+                      >
                         {item.label}
                       </span>
                     </Link>
