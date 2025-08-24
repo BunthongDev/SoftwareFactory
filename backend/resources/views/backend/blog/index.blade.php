@@ -34,35 +34,35 @@
                                 </tr>
                             </thead>
                             <tbody>
-    @foreach ($blogs as $key => $item)
-    <tr>
-        <td>{{ $key + 1 }}</td>
-        <td><img src="{{ asset($item->image) }}" style="width: 70px; height: 40px; object-fit: cover;"></td>
-        
-        {{-- Corrected --}}
-        <td>{{ Str::limit($item->title, 400) }}</td> 
-        <td>{{ $item->formatted_view_count }}</td> 
-        
-        <td>{{ $item->category }}</td>
-        <td>
-            @if ($item->published_at && \Carbon\Carbon::parse($item->published_at)->setTimezone('Asia/Phnom_Penh')->isPast())
-                <span class="badge bg-success">Published</span>
-            @else
-                <span class="badge bg-warning">Draft</span>
-            @endif
-        </td>
-        <td>
-            <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
-            
-            <form action="{{ route('blog.destroy', $item->id) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger btn-sm delete-button">Delete</button>
-            </form>
-        </td>
-    </tr>
-    @endforeach
-</tbody>
+                                    @foreach ($blogs as $key => $item)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td><img src="{{ asset($item->image) }}" style="width: 70px; height: 40px; object-fit: cover;"></td>
+                                        
+                                        {{-- Corrected --}}
+                                        <td>{{ Str::limit($item->title, 400) }}</td> 
+                                        <td>{{ $item->formatted_view_count }}</td> 
+                                        
+                                        <td>{{ $item->category }}</td>
+                                        <td>
+                                            @if ($item->published_at && \Carbon\Carbon::parse($item->published_at)->setTimezone('Asia/Phnom_Penh')->isPast())
+                                                <span class="badge bg-success">Published</span>
+                                            @else
+                                                <span class="badge bg-warning">Draft</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('blog.edit', $item->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                            
+                                            <form action="{{ route('blog.destroy', $item->id) }}" method="POST" class="d-inline" id="delete-form-{{ $item->id }}">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="btn btn-danger btn-sm delete-button">Delete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                            </tbody>
                         </table>
                     </div>
                 </div>

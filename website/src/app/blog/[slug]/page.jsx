@@ -23,6 +23,25 @@ import { getFooterData } from "@/lib/data/footer";
 // --- END: Data Fetching Imports ---
 
 
+// Generate static params for blog slugs
+export async function generateStaticParams() {
+  // Fetch all blog slugs from your API
+  const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`;
+  try {
+    const res = await fetch(apiUrl);
+    if (!res.ok) return [];
+    const jsonResponse = await res.json();
+    // Adjust this according to your API response structure
+    return jsonResponse.data.map((post) => ({
+      slug: post.slug,
+    }));
+  } catch (error) {
+    console.error("Failed to fetch slugs for static export:", error);
+    return [];
+  }
+}
+
+
 // Meta Data 
 export async function generateMetadata({ params }) {
   const { slug } = await params;
