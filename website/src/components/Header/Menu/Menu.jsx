@@ -37,7 +37,7 @@ const Menu = ({ data }) => {
           <Link className="menu-left-block" href="/">
             <Image
               src={
-                settings.logo_url || "/AnajakSoftware-page-not-found.png"
+                settings.logo_url || "/images/AnajakSoftware-page-not-found.png"
               }
               width={480}
               height={200}

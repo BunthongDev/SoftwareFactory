@@ -6,12 +6,12 @@ const nextConfig = {
     dangerouslyAllowSVG: true,
     remotePatterns: [
       // For local development
-      {
-        protocol: "http",
-        hostname: "127.0.0.1",
-        port: "8000",
-        pathname: "/upload/**",
-      },
+      // {
+      //   protocol: "http",
+      //   hostname: "127.0.0.1",
+      //   port: "8000",
+      //   pathname: "/upload/**",
+      // },
 
       // For the live production server
       {
@@ -19,6 +19,13 @@ const nextConfig = {
         hostname: "titi-dashboard.anajaksoftware.com",
         port: "",
         pathname: "/storage/**",
+      },
+
+      {
+        protocol: "https",
+        hostname: "titi-dashboard.anajaksoftware.com",
+        port: "",
+        pathname: "/upload/**",
       },
     ],
   },

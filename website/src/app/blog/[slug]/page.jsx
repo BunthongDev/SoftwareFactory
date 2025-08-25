@@ -25,16 +25,25 @@ import { getFooterData } from "@/lib/data/footer";
 
 // Generate static params for blog slugs
 export async function generateStaticParams() {
-  // Fetch all blog slugs from your API
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/blogs`;
   try {
     const res = await fetch(apiUrl);
     if (!res.ok) return [];
     const jsonResponse = await res.json();
-    // Adjust this according to your API response structure
-    return jsonResponse.data.map((post) => ({
-      slug: post.slug,
-    }));
+    const posts = jsonResponse.data;
+
+    // Validate each slug actually returns a blog post
+    const validSlugs = [];
+    for (const post of posts) {
+      if (!post.slug) continue;
+      const checkRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/api/blogs/${post.slug}`
+      );
+      if (checkRes.ok) {
+        validSlugs.push({ slug: post.slug });
+      }
+    }
+    return validSlugs;
   } catch (error) {
     console.error("Failed to fetch slugs for static export:", error);
     return [];
