@@ -7,6 +7,7 @@ const SingleAd = ({ ad }) => {
     return null;
   }
 
+  // Ads size
   const adContent = (
     <div className="relative w-full h-auto">
       <Image

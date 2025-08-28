@@ -1,31 +1,36 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // This is the critical line that creates the 'out' folder
-  output: "export",
+  reactStrictMode: true,
+  output: "export", // keep static export for Hostinger
   images: {
+    unoptimized: true, // <-- disable Next image optimization (required for export)
     dangerouslyAllowSVG: true,
     remotePatterns: [
-      // For local development
+      // local backend during development
       // {
       //   protocol: "http",
       //   hostname: "127.0.0.1",
       //   port: "8000",
-      //   pathname: "/upload/**",
+      //   pathname: "/**",
       // },
-
-      // For the live production server
+      // {
+      //   protocol: "http",
+      //   hostname: "localhost",
+      //   port: "8000",
+      //   pathname: "/**",
+      // },
+      // production backend hosts
       {
         protocol: "https",
         hostname: "titi-dashboard.anajaksoftware.com",
         port: "",
-        pathname: "/storage/**",
+        pathname: "/**",
       },
-
       {
         protocol: "https",
-        hostname: "titi-dashboard.anajaksoftware.com",
+        hostname: "anajaksoftware.com",
         port: "",
-        pathname: "/upload/**",
+        pathname: "/**",
       },
     ],
   },

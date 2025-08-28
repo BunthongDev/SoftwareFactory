@@ -33,7 +33,7 @@ export default function NotFound() {
 
         {/* Text Content */}
         <div className="text-center md:text-left">
-            <p className="text-xl font-semibold text-blue-600 font-battambang text-[60px] m-10">៤០៤</p>
+            <p className="text-xl font-semibold text-blue-600 font-battambang text-[80px] m-10">៤០៤</p>
             <h1 className="mt-2 text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Page not found</h1>
             <p className="mt-4 text-base text-gray-600">Sorry, we couldn’t find the page you’re looking for.</p>
             <div className="mt-8">

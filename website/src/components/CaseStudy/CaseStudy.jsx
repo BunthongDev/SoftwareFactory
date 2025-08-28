@@ -5,9 +5,11 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 import Link from "next/link";
+import CaseStudyCardOverlay from "./CaseStudyCardOverlay";
 
-// A component for the modal that displays the full case study
+// Case study modal for display when clicking on the card
 const CaseStudyModal = ({ study, closeModal }) => {
+  if (!study) return null;
   return (
     <AnimatePresence>
       <motion.div
@@ -23,7 +25,7 @@ const CaseStudyModal = ({ study, closeModal }) => {
           animate={{ scale: 1, y: 0 }}
           exit={{ scale: 0.9, y: 50 }}
           transition={{ type: "spring", stiffness: 300, damping: 25 }}
-          onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the modal
+          onClick={(e) => e.stopPropagation()}
         >
           <div className="relative h-96 w-full">
             <Image
@@ -50,32 +52,7 @@ const CaseStudyModal = ({ study, closeModal }) => {
   );
 };
 
-// A component for a single card in the staggered grid
-const CaseStudyCard = ({ study, onClick }) => {
-  return (
-    <motion.div
-      className="relative rounded-2xl overflow-hidden cursor-pointer group h-full"
-      onClick={onClick}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
-    >
-      <Image
-        src={study.image}
-        alt={study.title}
-        width={500}
-        height={500}
-        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-      />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-      <div className="absolute bottom-0 left-0 p-6 text-white">
-        <h3 className="text-2xl font-bold">{study.title}</h3>
-      </div>
-    </motion.div>
-  );
-};
-
+// Defines the main `CaseStudy` component, which manages the interactive grid and pop-up modal for the homepage section.
 const CaseStudy = ({ data }) => {
   const [selectedStudy, setSelectedStudy] = useState(null);
 
@@ -83,10 +60,10 @@ const CaseStudy = ({ data }) => {
     return null;
   }
 
-  // Slice the data to get the latest items for different screen sizes
   const latestSeven = data.slice(0, 7);
   const latestFour = data.slice(0, 4);
 
+  // Starts the JSX return block for the entire 'Our Work in Action' section layout.
   return (
     <>
       <section className="case-study-block bg-white lg:py-24 sm:py-20 py-16">
@@ -101,14 +78,13 @@ const CaseStudy = ({ data }) => {
             </p>
           </div>
 
-          {/* Staggered Grid Layout for Large Screens (7 items) */}
           <div className="hidden lg:grid grid-cols-3 gap-6">
             {latestSeven.map((study, index) => (
               <div
                 key={study.id}
                 className={index === 1 || index === 4 ? "row-span-2" : ""}
               >
-                <CaseStudyCard
+                <CaseStudyCardOverlay
                   study={study}
                   onClick={() => setSelectedStudy(study)}
                 />
@@ -116,14 +92,14 @@ const CaseStudy = ({ data }) => {
             ))}
           </div>
 
-          {/* Staggered Grid Layout for Medium Screens (4 items) */}
+          {/* Defines the staggered grid layout for medium (sm) screen sizes, showing the latest four case studies. */}
           <div className="hidden sm:grid lg:hidden grid-cols-2 gap-6">
             {latestFour.map((study, index) => (
               <div
                 key={study.id}
                 className={index === 1 || index === 2 ? "row-span-2" : ""}
               >
-                <CaseStudyCard
+                <CaseStudyCardOverlay
                   study={study}
                   onClick={() => setSelectedStudy(study)}
                 />
@@ -131,11 +107,10 @@ const CaseStudy = ({ data }) => {
             ))}
           </div>
 
-          {/* Single Column Layout for Extra Small Screens (4 items) */}
           <div className="grid sm:hidden grid-cols-1 gap-6">
             {latestFour.map((study) => (
               <div key={study.id} className="h-80">
-                <CaseStudyCard
+                <CaseStudyCardOverlay
                   study={study}
                   onClick={() => setSelectedStudy(study)}
                 />
@@ -143,7 +118,6 @@ const CaseStudy = ({ data }) => {
             ))}
           </div>
 
-          {/* Add the "See More" button */}
           <div className="text-center mt-16">
             <Link
               href="/case-studies"
@@ -155,7 +129,6 @@ const CaseStudy = ({ data }) => {
         </div>
       </section>
 
-      {/* Modal */}
       <AnimatePresence>
         {selectedStudy && (
           <CaseStudyModal

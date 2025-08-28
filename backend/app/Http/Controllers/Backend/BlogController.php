@@ -14,12 +14,23 @@ use Illuminate\Support\Facades\File;
 
 class BlogController extends Controller
 {
+    
     /**
      * API endpoint to get all blog posts for the frontend.
+     * This method is now flexible and accepts a 'limit' parameter.
      */
-    public function ApiAllBlogs()
+    public function ApiAllBlogs(Request $request) // 1. Accept the Request object
     {
-        $blogs = Blog::whereNotNull('published_at')->where('published_at', '<=', now())->latest()->get();
+        // 2. Get the 'limit' from the URL query. Default to a high number if not provided.
+        $limit = $request->query('limit', 1000);
+
+        // 3. Apply the limit to your database query
+        $blogs = Blog::whereNotNull('published_at')
+            ->where('published_at', '<=', now())
+            ->latest()
+            ->limit($limit) // Use the limit from the URL
+            ->get();
+
         return BlogResource::collection($blogs);
     }
 
@@ -54,21 +65,6 @@ class BlogController extends Controller
             ->where('published_at', '<=', now())
             ->latest()
             ->take(3)
-            ->get();
-
-        return BlogResource::collection($blogs);
-    }
-
-
-    /**
-     * API endpoint to get the 3 latest blog posts for the homepage.
-     */
-    public function ApiLatestBlogs()
-    {
-        $blogs = Blog::whereNotNull('published_at')
-            ->where('published_at', '<=', now())
-            ->latest()
-            ->take(3) // Get only the 3 most recent posts
             ->get();
 
         return BlogResource::collection($blogs);

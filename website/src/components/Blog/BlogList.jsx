@@ -1,17 +1,17 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import * as Icon from "@phosphor-icons/react/dist/ssr";
 
-// A single blog card component, redesigned for a horizontal list layout.
+// Defines the `BlogCard` component, which is responsible for displaying a single blog post.
 const BlogCard = ({ post }) => {
-  const avatarSrc =
-    post.avatar && post.avatar.includes("/upload/")
-      ? post.avatar
-      : "/images/avatar-writer-image/crop-image-60x60.jpeg";
+  const avatarSrc = post.avatar?.includes("/upload/")
+    ? post.avatar
+    : "/images/avatar-writer-image/crop-image-60x60.jpeg";
 
+  // Starts the JSX return block for the `BlogCard`'s visual structure.
   return (
     <motion.div
       className="bg-white rounded-2xl shadow-lg overflow-hidden group grid sm:grid-cols-3"
@@ -35,17 +35,18 @@ const BlogCard = ({ post }) => {
           </span>
         </div>
         <h3 className="text-2xl font-bold text-black mb-3 group-hover:text-blue-600 transition-colors duration-300 font-battambang">
-          {/* UPDATED: The link now uses post.slug */}
           <Link href={`/blog/${post.slug}`}>{post.title}</Link>
         </h3>
-        <p className="text-gray-600 mb-4 flex-grow font-battambang">{post.desc}</p>
+        <p className="text-gray-600 mb-4 flex-grow font-battambang line-clamp-3">
+          {post.desc}
+        </p>
         <div className="flex items-center text-sm text-gray-500 border-t border-gray-100 pt-4 mt-auto">
           <Image
             src={avatarSrc}
             alt={post.author}
             width={40}
             height={40}
-            className="rounded-full mr-3"
+            className="rounded-full mr-3 object-cover"
           />
           <span>
             By <strong className="text-gray-800">{post.author}</strong>
@@ -58,29 +59,39 @@ const BlogCard = ({ post }) => {
   );
 };
 
-// The main component that displays the list of blog posts
+// Defines the main `BlogList` component, which handles the display and filtering of all blog posts.
 const BlogList = ({ data }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
+  const mainContentRef = useRef(null);
 
   const categories = useMemo(() => {
     if (!data) return ["All"];
-    const allCategories = data.map((post) => post.category);
-    return ["All", ...new Set(allCategories)];
+    return ["All", ...new Set(data.map((post) => post.category))];
   }, [data]);
 
   const filteredPosts = useMemo(() => {
     if (!data) return [];
-    return data.filter((post) => {
-      const matchesCategory =
-        selectedCategory === "All" || post.category === selectedCategory;
-      const matchesSearch =
-        (post.title || "").toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (post.desc || "").toLowerCase().includes(searchTerm.toLowerCase());
-      return matchesCategory && matchesSearch;
-    });
+    const term = searchTerm.toLowerCase();
+    return data.filter(
+      (post) =>
+        (selectedCategory === "All" || post.category === selectedCategory) &&
+        ((post.title || "").toLowerCase().includes(term) ||
+          (post.desc || "").toLowerCase().includes(term))
+    );
   }, [data, searchTerm, selectedCategory]);
 
+  // A React hook that triggers a smooth scroll to the top of the article list whenever the filters change.
+  useEffect(() => {
+    if (mainContentRef.current) {
+      mainContentRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [selectedCategory, searchTerm]);
+
+  // Starts the JSX return block for the entire blog page layout, including the sidebar and the list of posts.
   return (
     <section className="bg-slate-50 py-24 sm:py-32">
       <div className="container mx-auto px-4">
@@ -90,10 +101,7 @@ const BlogList = ({ data }) => {
               <h3 className="text-2xl font-bold text-gray-900 mb-4">Search</h3>
               <div className="relative">
                 <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
-                  <Icon.MagnifyingGlassIcon
-                    size={20}
-                    className="text-gray-400 "
-                  />
+                  <Icon.MagnifyingGlass size={20} className="text-gray-400" />
                 </div>
                 <input
                   type="text"
@@ -123,7 +131,8 @@ const BlogList = ({ data }) => {
               </div>
             </div>
           </aside>
-          <main className="lg:col-span-3">
+
+          <main className="lg:col-span-3" ref={mainContentRef}>
             {filteredPosts.length > 0 ? (
               <div className="space-y-8">
                 {filteredPosts.map((post) => (

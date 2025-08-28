@@ -106,7 +106,7 @@ const TelegramFloat = () => {
               ease: "easeInOut",
             },
           }}
-          className="fixed bottom-8 right-8 z-50 flex items-center"
+          className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50 flex items-center"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >
@@ -117,7 +117,7 @@ const TelegramFloat = () => {
               x: isHovered || showInitialTooltip ? 0 : 20,
             }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="mr-4 flex h-10 w-40 items-center justify-center overflow-hidden rounded-md bg-gray-800 px-4 py-2 text-sm font-semibold text-white shadow-lg"
+            className="mr-3 sm:mr-4 flex h-8 w-36 sm:h-10 sm:w-40 items-center justify-center overflow-hidden rounded-md bg-gray-800 px-3 sm:px-4 py-1.5 sm:py-2 text-xs sm:text-sm font-semibold text-white shadow-lg"
           >
             <AnimatePresence mode="wait">
               <motion.p
@@ -138,20 +138,27 @@ const TelegramFloat = () => {
               href={`https://t.me/${telegramUsername}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-16 w-16 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg"
+              className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-blue-500 text-white shadow-lg"
               aria-label="Chat with us on Telegram"
             >
-              <motion.div whileHover={{ scale: 1.2, rotate: 15 }}>
-                <TelegramLogoIcon size={32} weight="fill" />
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 15 }}
+                className="sm:scale-100"
+              >
+                <TelegramLogoIcon
+                  size={28}
+                  weight="fill"
+                  className="sm:scale-[1.15]"
+                />
               </motion.div>
             </Link>
             {/* Close Button positioned on the Telegram Logo */}
             <button
               onClick={() => setIsClosed(true)}
-              className="absolute -top-1 -right-1 flex h-6 w-6 items-center justify-center rounded-full bg-gray-700 text-white shadow-md transition-colors hover:bg-red-500"
+              className="absolute -top-1 -right-1 flex h-5 w-5 sm:h-6 sm:w-6 items-center justify-center rounded-full bg-gray-700 text-white shadow-md transition-colors hover:bg-red-500"
               aria-label="Close chat popup"
             >
-              <XIcon size={16} />
+              <XIcon size={14} className="sm:scale-110" />
             </button>
           </div>
         </motion.div>

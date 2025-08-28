@@ -12,7 +12,7 @@
             style="max-width:500px; margin:40px auto; background:#fff; border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.04); overflow:hidden;">
             <!-- Logo -->
             <div style="text-align:center; margin-top:32px; margin-bottom:24px;">
-                <h1>SoftwareFactory</h1>
+                <h1>AnajakSoftware</h1>
                 {{-- <img src="{{ config('app.url') }}/backend/assets/images/logo-light-mode.png" alt="Company Logo"
                     style="height:40px;"> --}}
             </div>
@@ -38,7 +38,7 @@
             </div>
             <!-- Footer -->
             <div style="text-align:center; margin:24px 0 8px 0;">
-                <p style="color:#adb5bd; font-size:0.8rem;">© 2025 SoftwareFactory. All rights reserved.</p>
+                <p style="color:#adb5bd; font-size:0.8rem;">© 2025 AnajakSoftware. All rights reserved.</p>
             </div>
         </div>
     </div>
