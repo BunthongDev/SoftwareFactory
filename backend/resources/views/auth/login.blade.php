@@ -11,7 +11,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- App favicon -->
-    <link rel="shortcut icon" href="{{ asset('backend/assets/images/favicon.png') }}">
+    <link rel="shortcut icon" href="{{ asset('backend/assets/images/SoftwareFactory-Favicon.png') }}">
 
     <!-- App css -->
     <link href="{{ asset('backend/assets/css/app.min.css') }}" rel="stylesheet" type="text/css" id="app-style" />
@@ -32,7 +32,7 @@
                             <div class="mb-0 border-0 p-md-5 p-lg-0 p-4">
                                 <div class="mb-4 p-0 text-center">
                                     <a href="#" class="auth-logo">
-                                        <img src="{{ asset('backend/assets/images/logo-light-mode.png') }}"
+                                        <img src="{{ asset('backend/assets/images/SoftwareFactory-black.png') }}"
                                             alt="logo-dark" class="mx-auto" height="78" />
                                     </a>
                                 </div>
@@ -98,9 +98,10 @@
 
                                     {{-- Register --}}
                                     <div class="text-center text-muted mb-4">
-                                        <p class="mb-0">Don't have an account ?
-                                            <a class='text-primary ms-2 fw-medium' href='{{ route('register') }}'>Sign
-                                                up</a>
+                                        {{-- <p class="mb-0">Don't have an account ? --}}
+                                            <a class='text-primary ms-2 fw-medium' href='{{ route('register') }}'>
+                                                {{-- Sign up --}}
+                                            </a>
                                         </p>
                                     </div>
 

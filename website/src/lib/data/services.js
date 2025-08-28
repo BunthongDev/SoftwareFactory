@@ -1,10 +1,10 @@
 // This file only contains functions related to fetching SERVICES.
 export async function getServices() {
-    // Use the environment variable to construct the API URL
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/services`;
 
   try {
-    const res = await fetch(apiUrl, { cache: "no-store" });
+    //  REMOVED { cache: "no-store" } to enable static generation
+    const res = await fetch(apiUrl);
 
     if (!res.ok) {
       console.error("Failed to fetch services:", res.statusText);

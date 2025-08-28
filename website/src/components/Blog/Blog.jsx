@@ -11,6 +11,7 @@ const BlogCard = ({ post }) => {
       ? post.avatar
       : "/images/avatar-writer-image/crop-image-60x60.jpeg";
 
+  // Starts the JSX return block, defining the visual layout of a single blog card.
   return (
     <motion.div
       className="bg-white rounded-2xl shadow-lg overflow-hidden group"
@@ -58,6 +59,7 @@ const Blog = ({ data }) => {
     return null;
   }
 
+  // Starts the JSX return block, defining the layout for the entire 'Latest News' section.
   return (
     <section className="bg-slate-50 py-24 sm:py-32">
       <div className="container mx-auto px-4">

@@ -1,10 +1,10 @@
 // This file only contains functions related to fetching SLIDERS.
 export async function getSliders() {
-    // Use the environment variable to construct the API URL
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/sliders`;
 
   try {
-    const res = await fetch(apiUrl, { cache: "no-store" });
+    //  REMOVED { cache: "no-store" } to enable static generation
+    const res = await fetch(apiUrl);
 
     if (!res.ok) {
       console.error("Failed to fetch sliders:", res.statusText);
@@ -17,5 +17,4 @@ export async function getSliders() {
     console.error("Could not connect to the API to fetch sliders.", error);
     return [];
   }
-  
 }

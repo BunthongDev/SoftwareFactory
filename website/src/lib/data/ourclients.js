@@ -5,7 +5,7 @@ export async function getClientData() {
 
   try {
     // Fetch the data, ensuring it's always the latest version.
-    const res = await fetch(apiUrl, { cache: "no-store" });
+    const res = await fetch(apiUrl);
 
     if (!res.ok) {
       console.error("Failed to fetch client data:", res.statusText);

@@ -1,17 +1,19 @@
 "use client";
-import React from "react";
+import React from "react"; // Removed useEffect and useState
 import Image from "next/image";
 
-// A single testimonial card with custom styling.
+// This is your original TestimonialCard component - the style is preserved.
 const TestimonialCard = ({ testimonial }) => {
   return (
     <div className="w-full p-6 bg-white rounded-2xl shadow-lg border-2 border-gray-600 flex flex-col">
       <div className="flex items-center gap-4 mb-4">
         <Image
-          src={testimonial.avatar}
+          src={
+            testimonial.avatar || "/images/AnajakSoftware-page-not-found.png"
+          }
           width={50}
           height={50}
-          alt={testimonial.name}
+          alt={testimonial.name || "avatar"}
           className="flex-shrink-0 rounded-full border-2 border-gray-400 w-24 h-24"
         />
         <div>
@@ -30,17 +32,14 @@ const TestimonialCard = ({ testimonial }) => {
   );
 };
 
-// A component for a single scrolling column.
+// This component is also unchanged.
 const TestimonialColumn = ({
   testimonials,
   reverse = false,
   className = "",
 }) => {
-  // We duplicate the testimonials to create a seamless loop.
   const combinedTestimonials = [...testimonials, ...testimonials];
-
   return (
-    // UPDATED: We now apply a CSS class for the animation instead of an inline style.
     <div
       className={`flex flex-col gap-8 ${className} ${
         reverse ? "animate-scroll-reverse" : "animate-scroll-normal"
@@ -48,7 +47,7 @@ const TestimonialColumn = ({
     >
       {combinedTestimonials.map((testimonial, index) => (
         <TestimonialCard
-          key={`${testimonial.id}-${index}`}
+          key={`${testimonial.id || index}-${index}`}
           testimonial={testimonial}
         />
       ))}
@@ -56,24 +55,24 @@ const TestimonialColumn = ({
   );
 };
 
-const Testimonial = ({ testimonialData }) => {
+// 1. The component now receives 'data' as a prop
+export default function Testimonial({ data: testimonialData }) {
+  // 2. All data fetching and loading states are removed.
+
+  // If the server provides no data, don't render the section.
   if (!testimonialData || testimonialData.length === 0) {
-    return (
-      <section className="bg-slate-50 py-20 text-center">
-        <p>Loading testimonials or no data available.</p>
-      </section>
-    );
+    return null;
   }
 
-  // Split the testimonials into three arrays for the three columns.
+  // The logic to split testimonials into columns remains the same.
   const third = Math.ceil(testimonialData.length / 3);
   const column1 = testimonialData.slice(0, third);
   const column2 = testimonialData.slice(third, third * 2);
   const column3 = testimonialData.slice(third * 2);
 
+  // 3. The JSX structure, styles, and animation
   return (
     <>
-      {/* UPDATED: We now define the animation classes here. */}
       <style jsx global>{`
         @keyframes scroll {
           from {
@@ -90,7 +89,8 @@ const Testimonial = ({ testimonialData }) => {
           animation: scroll 30s linear infinite reverse;
         }
       `}</style>
-      <section className="bg-slate-50 py-24 sm:py-32">
+
+      <section className="bg-slate-50 py-24 sm-py-32">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20 max-w-3xl mx-auto ">
             <h2 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
@@ -102,7 +102,6 @@ const Testimonial = ({ testimonialData }) => {
             </p>
           </div>
 
-          {/* The main container for the scrolling columns. */}
           <div className="relative h-[600px] md:h-[800px] overflow-hidden">
             <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,transparent,black_10%,black_90%,transparent)]">
               <div className="absolute inset-x-0 top-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -123,6 +122,4 @@ const Testimonial = ({ testimonialData }) => {
       </section>
     </>
   );
-};
-
-export default Testimonial;
+}

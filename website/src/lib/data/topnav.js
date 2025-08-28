@@ -4,7 +4,7 @@ export async function getTopNavData() {
   const apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/top-navbar-settings`;
 
   try {
-    const res = await fetch(apiUrl, { cache: "no-store" });
+    const res = await fetch(apiUrl);
 
     if (!res.ok) {
       console.error("Failed to fetch top navbar data:", res.statusText);
