@@ -107,7 +107,7 @@ php artisan migrate
 
 ### Frontend (Next.js 15)
 
-* Modern **SSR/SSG** website
+* Modern **Server Side Component (SSC)/ Service Side Generation (SSG) ** website
 * **Tailwind CSS** styling & fully responsive UI
 * API integration with the Laravel backend
 * Auth-aware data fetching; works with secured API + 2FA flow
@@ -130,7 +130,7 @@ php artisan migrate
 
 ### Frontend
 
-* checking in this URL [httpanajaksoftware.com](https://www.anajaksoftware.com/)
+* checking in this URL [https://anajaksoftware.com](https://www.anajaksoftware.com/)
 
 
 ---
